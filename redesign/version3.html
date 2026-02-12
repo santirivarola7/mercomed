@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mercomed S.A - Productos Médico Hospitalarios">
+    <title>Mercomed S.A - Productos Médico Hospitalarios | V3 Elegante</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --green: #0E6E45;
+            --green-dark: #094e31;
+            --green-light: #e8f5ee;
+            --green-muted: #f4faf7;
+            --orange: #EC5403;
+            --orange-soft: #f07830;
+            --cream: #faf8f5;
+            --dark: #1a1f25;
+            --dark-warm: #2a2e34;
+            --gray-100: #f7f8f9;
+            --gray-200: #eaeced;
+            --gray-300: #d1d5d9;
+            --gray-500: #6b7280;
+            --gray-700: #3f4550;
+            --white: #ffffff;
+            --font-heading: 'Liebling', 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --shadow-subtle: 0 1px 3px rgba(0,0,0,0.04);
+            --shadow-card: 0 4px 24px rgba(0,0,0,0.06);
+            --shadow-elevated: 0 16px 48px rgba(0,0,0,0.1);
+            --radius: 8px;
+            --radius-lg: 16px;
+            --transition: all 0.35s ease;
+        }
+
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); color: var(--dark); line-height: 1.75; overflow-x: hidden; background: var(--white); }
+        h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        .container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+
+        /* === TOPBAR === */
+        .topbar {
+            background: var(--green); color: white; padding: 10px 0;
+            font-size: 0.8rem; display: flex;
+        }
+        .topbar .container {
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+        }
+        .topbar-left { display: flex; gap: 24px; align-items: center; }
+        .topbar-left a { color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 6px; }
+        .topbar-left a:hover { color: white; }
+        .topbar-right { color: rgba(255,255,255,0.7); }
+
+        /* === NAVBAR === */
+        .navbar {
+            position: sticky; top: 0; z-index: 1000;
+            background: var(--white); border-bottom: 1px solid var(--gray-200);
+            padding: 0;
+        }
+        .navbar .container {
+            display: flex; align-items: center; justify-content: space-between;
+            height: 72px;
+        }
+        .navbar-brand {
+            font-family: var(--font-heading); font-size: 1.6rem; font-weight: 700;
+            color: var(--dark); display: flex; align-items: center; gap: 12px;
+        }
+        .navbar-brand .brand-mark {
+            width: 44px; height: 44px; background: var(--green);
+            border-radius: 6px; display: flex; align-items: center; justify-content: center;
+            color: white; font-family: var(--font-heading); font-weight: 800; font-size: 1.1rem;
+            position: relative;
+        }
+        .navbar-brand .brand-mark::after {
+            content: ''; position: absolute; inset: -3px; border-radius: 9px;
+            border: 2px solid var(--green-light);
+        }
+        .navbar-links { display: flex; align-items: center; gap: 0; list-style: none; height: 100%; }
+        .navbar-links li { height: 100%; }
+        .navbar-links a {
+            display: flex; align-items: center; height: 100%;
+            padding: 0 20px; font-size: 0.88rem; font-weight: 500;
+            color: var(--gray-500); border-bottom: 3px solid transparent;
+            margin-bottom: -1px;
+        }
+        .navbar-links a:hover { color: var(--green); border-bottom-color: var(--green); }
+        .navbar-links .cta-link {
+            background: var(--green); color: white !important;
+            height: auto; padding: 10px 24px; border-radius: 6px;
+            margin-left: 12px; border: none; font-weight: 600;
+        }
+        .navbar-links .cta-link:hover { background: var(--green-dark); }
+
+        .menu-btn { display: none; background: none; border: 1px solid var(--gray-200); border-radius: 6px; padding: 8px 12px; cursor: pointer; }
+        .menu-btn i { font-size: 1.1rem; color: var(--dark); }
+
+        /* === HERO === */
+        .hero {
+            display: grid; grid-template-columns: 1fr 1fr; min-height: 600px;
+            overflow: hidden;
+        }
+        .hero-text {
+            display: flex; flex-direction: column; justify-content: center;
+            padding: 80px 60px 80px 0; padding-left: calc((100vw - 1160px)/2 + 28px);
+        }
+        .hero-text .tag {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 0.78rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.12em; color: var(--orange); margin-bottom: 20px;
+        }
+        .hero-text .tag .line { width: 32px; height: 2px; background: var(--orange); }
+        .hero-text h1 {
+            font-size: clamp(2.4rem, 4vw, 3.4rem); font-weight: 700;
+            color: var(--dark); margin-bottom: 20px; letter-spacing: -0.01em;
+        }
+        .hero-text h1 em {
+            font-style: italic; color: var(--green);
+        }
+        .hero-text p {
+            font-size: 1.05rem; color: var(--gray-500); max-width: 480px;
+            margin-bottom: 36px;
+        }
+        .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+        .btn {
+            padding: 14px 32px; border-radius: 6px; font-weight: 600;
+            font-size: 0.9rem; display: inline-flex; align-items: center;
+            gap: 8px; border: none; cursor: pointer; transition: var(--transition);
+        }
+        .btn-green { background: var(--green); color: white; }
+        .btn-green:hover { background: var(--green-dark); transform: translateY(-1px); box-shadow: var(--shadow-card); }
+        .btn-outline { background: transparent; border: 2px solid var(--gray-300); color: var(--dark); }
+        .btn-outline:hover { border-color: var(--green); color: var(--green); }
+
+        .hero-visual {
+            background: linear-gradient(150deg, var(--green) 0%, var(--green-dark) 60%, #073d26 100%);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+        }
+        .hero-visual::before {
+            content: ''; position: absolute; inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect x="50" y="50" width="300" height="300" rx="150" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/><rect x="100" y="100" width="200" height="200" rx="100" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/></svg>') center/contain no-repeat;
+        }
+        .hero-badge-group {
+            position: relative; z-index: 2; display: flex; flex-direction: column;
+            align-items: center; gap: 24px; text-align: center; color: white; padding: 40px;
+        }
+        .hero-icon {
+            width: 100px; height: 100px; border-radius: 24px;
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; border: 1px solid rgba(255,255,255,0.15);
+        }
+        .hero-badge-group h2 {
+            font-size: 1.8rem; max-width: 300px;
+        }
+        .hero-badge-group p { color: rgba(255,255,255,0.7); font-size: 0.95rem; max-width: 300px; }
+
+        /* === METRICS === */
+        .metrics {
+            padding: 0; background: var(--cream); border-bottom: 1px solid var(--gray-200);
+        }
+        .metrics-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+        }
+        .metric-item {
+            text-align: center; padding: 48px 24px;
+            border-right: 1px solid var(--gray-200);
+        }
+        .metric-item:last-child { border-right: none; }
+        .metric-item h3 {
+            font-size: 2.2rem; font-weight: 700; color: var(--green); margin-bottom: 4px;
+        }
+        .metric-item p { font-size: 0.85rem; color: var(--gray-500); }
+
+        /* === FEATURES === */
+        .features { padding: 100px 0; background: var(--white); }
+        .section-head { margin-bottom: 56px; }
+        .section-head .overline {
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.15em; color: var(--orange); margin-bottom: 10px;
+        }
+        .section-head h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--dark); max-width: 500px; }
+        .section-head p { color: var(--gray-500); font-size: 1rem; margin-top: 12px; max-width: 500px; }
+        .section-head.centered { text-align: center; }
+        .section-head.centered h2, .section-head.centered p { max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        .features-layout { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .feat-card {
+            display: flex; gap: 20px; align-items: flex-start;
+            padding: 32px; border-radius: var(--radius-lg);
+            background: var(--white); border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+        .feat-card:hover { background: var(--green-muted); border-color: rgba(14,110,69,0.15); box-shadow: var(--shadow-card); }
+        .feat-card-icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            background: var(--green-light); color: var(--green);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; flex-shrink: 0; transition: var(--transition);
+        }
+        .feat-card:hover .feat-card-icon { background: var(--green); color: white; }
+        .feat-card-content h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; color: var(--dark); }
+        .feat-card-content p { font-size: 0.88rem; color: var(--gray-500); line-height: 1.6; }
+
+        /* === ABOUT === */
+        .about {
+            padding: 100px 0; background: var(--cream);
+        }
+        .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .about-visual {
+            position: relative;
+        }
+        .about-visual-main {
+            width: 100%; aspect-ratio: 4/3; border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 3rem; box-shadow: var(--shadow-elevated);
+        }
+        .about-visual-accent {
+            position: absolute; bottom: -20px; right: -20px;
+            width: 180px; padding: 24px; background: white;
+            border-radius: var(--radius); box-shadow: var(--shadow-elevated);
+            text-align: center;
+        }
+        .about-visual-accent h3 { font-size: 2rem; color: var(--orange); font-weight: 800; }
+        .about-visual-accent p { font-size: 0.78rem; color: var(--gray-500); }
+        .about-text h2 { font-size: 2.2rem; margin-bottom: 20px; }
+        .about-text h2 em { font-style: italic; color: var(--green); }
+        .about-text > p { color: var(--gray-500); font-size: 1rem; margin-bottom: 16px; }
+        .check-list { list-style: none; margin-top: 28px; }
+        .check-list li {
+            display: flex; align-items: center; gap: 14px; padding: 10px 0;
+            font-size: 0.95rem; color: var(--dark); font-weight: 500;
+        }
+        .check-list li i {
+            color: var(--orange); font-size: 0.9rem;
+        }
+
+        /* === BRANDS === */
+        .brands-section { padding: 100px 0; background: var(--white); }
+        .brands-flex {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px; margin-top: 48px;
+        }
+        .brand-item {
+            text-align: center; padding: 20px 16px; background: var(--gray-100);
+            border-radius: var(--radius); font-weight: 700; font-size: 0.85rem;
+            color: var(--gray-700); border: 1px solid transparent;
+            transition: var(--transition); cursor: default;
+        }
+        .brand-item:hover { border-color: var(--green); color: var(--green); background: var(--green-light); }
+        .brand-item.exclusive-brand {
+            background: var(--green); color: white; border-color: var(--green);
+        }
+        .brand-item.exclusive-brand:hover { background: var(--green-dark); }
+        .brand-item.exclusive-brand .exc-tag {
+            display: block; font-size: 0.65rem; font-weight: 400;
+            opacity: 0.7; margin-top: 2px; text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* === CONTACT === */
+        .contact-section {
+            padding: 100px 0;
+            background: var(--dark); color: white;
+            position: relative;
+        }
+        .contact-section .section-head .overline { color: var(--orange); }
+        .contact-section .section-head h2 { color: white; }
+        .contact-section .section-head p { color: rgba(255,255,255,0.5); }
+        .contact-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+        }
+        .contact-item {
+            padding: 36px 28px; background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius-lg);
+            transition: var(--transition);
+        }
+        .contact-item:hover { background: rgba(255,255,255,0.08); border-color: rgba(14,110,69,0.3); }
+        .contact-item-icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            background: var(--green); display: flex; align-items: center;
+            justify-content: center; font-size: 1.2rem; margin-bottom: 20px;
+        }
+        .contact-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+        .contact-item p { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.7; }
+        .contact-item a { color: var(--orange-soft); font-weight: 600; }
+        .contact-item a:hover { color: var(--orange); }
+        .hours-note {
+            text-align: center; margin-top: 36px; color: rgba(255,255,255,0.4);
+            font-size: 0.88rem; display: flex; align-items: center;
+            justify-content: center; gap: 8px;
+        }
+        .hours-note i { color: var(--orange-soft); }
+
+        /* === FOOTER === */
+        .footer {
+            background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 32px 0;
+        }
+        .footer-inner {
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+        }
+        .footer-brand { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; color: white; }
+        .footer-brand small { font-family: var(--font-body); font-weight: 400; color: rgba(255,255,255,0.3); font-size: 0.78rem; margin-left: 8px; }
+        .footer-links { display: flex; gap: 20px; list-style: none; }
+        .footer-links a { color: rgba(255,255,255,0.4); font-size: 0.82rem; }
+        .footer-links a:hover { color: white; }
+        .footer-badges { display: flex; gap: 10px; }
+        .footer-badge-item {
+            padding: 5px 12px; border-radius: 4px; font-size: 0.7rem;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+            border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.4);
+        }
+
+        /* === ANIMATIONS === */
+        .anim {
+            opacity: 0; transform: translateY(24px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .anim.show { opacity: 1; transform: translateY(0); }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; }
+            .hero-text { padding: 100px 28px 60px; }
+            .hero-visual { min-height: 350px; }
+            .features-layout { grid-template-columns: 1fr; }
+            .about-layout { grid-template-columns: 1fr; gap: 48px; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+            .metric-item:nth-child(2) { border-right: none; }
+        }
+
+        @media (max-width: 768px) {
+            .topbar { display: none; }
+            .navbar-links { display: none; }
+            .navbar-links.show {
+                display: flex; flex-direction: column; position: absolute;
+                top: 72px; left: 0; right: 0; background: white;
+                box-shadow: var(--shadow-elevated); padding: 20px; gap: 0;
+                border-top: 1px solid var(--gray-200);
+            }
+            .navbar-links.show li { height: auto; }
+            .navbar-links.show a {
+                padding: 14px 16px; border-radius: 6px; border-bottom: none; height: auto;
+            }
+            .navbar-links.show a:hover { background: var(--gray-100); }
+            .navbar-links .cta-link { margin-left: 0; margin-top: 8px; justify-content: center; }
+            .menu-btn { display: block; }
+
+            .hero-text h1 { font-size: 2.2rem; }
+            .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+            .features { padding: 80px 0; }
+            .about { padding: 80px 0; }
+            .brands-section { padding: 80px 0; }
+            .contact-section { padding: 80px 0; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .about-visual-accent { position: static; width: 100%; margin-top: 16px; }
+            .footer-inner { flex-direction: column; text-align: center; }
+            .footer-links { justify-content: center; }
+            .footer-badges { justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text { padding: 80px 20px 40px; }
+            .hero-text h1 { font-size: 1.9rem; }
+            .hero-ctas { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+            .metrics-grid { grid-template-columns: 1fr 1fr; }
+            .metric-item { padding: 32px 16px; }
+            .brands-flex { grid-template-columns: repeat(2, 1fr); }
+            .feat-card { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOPBAR -->
+    <div class="topbar">
+        <div class="container">
+            <div class="topbar-left">
+                <a href="tel:03543440021"><i class="fa-solid fa-phone"></i> 03543 440021</a>
+                <a href="mailto:info@mercomed.com.ar"><i class="fa-solid fa-envelope"></i> info@mercomed.com.ar</a>
+                <a href="https://wa.me/5493517352990"><i class="fa-brands fa-whatsapp"></i> +54 9 351 735-2990</a>
+            </div>
+            <div class="topbar-right">
+                Lun - Vie: 8:00hs a 17:00hs
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="navbar-brand">
+                <div class="brand-mark">M</div>
+                Mercomed
+            </a>
+            <ul class="navbar-links" id="navLinks">
+                <li><a href="#inicio">La empresa</a></li>
+                <li><a href="#propuesta">Propuesta</a></li>
+                <li><a href="#marcas">Productos</a></li>
+                <li><a href="#ubicacion">Ubicaci&oacute;n</a></li>
+                <li><a href="#contacto" class="cta-link">Contacto</a></li>
+            </ul>
+            <button class="menu-btn" id="menuBtn" aria-label="Men&uacute;">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <div class="hero-text">
+            <div class="tag"><span class="line"></span> Productos M&eacute;dico Hospitalarios</div>
+            <h1>Calidad y confianza en <em>insumos m&eacute;dicos</em></h1>
+            <p>Contamos con el respaldo de muchos a&ntilde;os de experiencia ofreciendo un modelo de negocios altamente conveniente a los intereses y necesidades de su empresa.</p>
+            <div class="hero-ctas">
+                <a href="#propuesta" class="btn btn-green">
+                    Conocer propuesta <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="#contacto" class="btn btn-outline">
+                    Contactar
+                </a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-badge-group">
+                <div class="hero-icon"><i class="fa-solid fa-plus"></i></div>
+                <h2>Soluciones m&eacute;dicas integrales</h2>
+                <p>M&aacute;s de 20 marcas, distribuci&oacute;n exclusiva y entrega inmediata.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- METRICS -->
+    <section class="metrics">
+        <div class="metrics-grid">
+            <div class="metric-item anim">
+                <h3>20+</h3>
+                <p>Marcas disponibles</p>
+            </div>
+            <div class="metric-item anim">
+                <h3>100%</h3>
+                <p>Calidad garantizada</p>
+            </div>
+            <div class="metric-item anim">
+                <h3>24hs</h3>
+                <p>Entrega inmediata</p>
+            </div>
+            <div class="metric-item anim">
+                <h3>ANMAT</h3>
+                <p>Habilitaci&oacute;n oficial</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="propuesta">
+        <div class="container">
+            <div class="section-head anim">
+                <div class="overline">Nuestra propuesta</div>
+                <h2>Nuestra propuesta est&aacute; basada en...</h2>
+                <p>Pilares que sostienen nuestra trayectoria y compromiso en el mercado m&eacute;dico hospitalario.</p>
+            </div>
+            <div class="features-layout">
+                <div class="feat-card anim">
+                    <div class="feat-card-icon"><i class="fa-solid fa-award"></i></div>
+                    <div class="feat-card-content">
+                        <h3>Productos de excelente calidad</h3>
+                        <p>Trabajamos con los m&aacute;s altos est&aacute;ndares de calidad en cada uno de nuestros productos.</p>
+                    </div>
+                </div>
+                <div class="feat-card anim">
+                    <div class="feat-card-icon"><i class="fa-solid fa-star"></i></div>
+                    <div class="feat-card-content">
+                        <h3>Marcas altamente reconocidas</h3>
+                        <p>Distribuimos marcas l&iacute;deres reconocidas a nivel nacional e internacional.</p>
+                    </div>
+                </div>
+                <div class="feat-card anim">
+                    <div class="feat-card-icon"><i class="fa-solid fa-tags"></i></div>
+                    <div class="feat-card-content">
+                        <h3>Precios sumamente competitivos</h3>
+                        <p>La mejor relaci&oacute;n costo-beneficio del mercado hospitalario.</p>
+                    </div>
+                </div>
+                <div class="feat-card anim">
+                    <div class="feat-card-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                    <div class="feat-card-content">
+                        <h3>Disponibilidad y entrega inmediata</h3>
+                        <p>Stock permanente y log&iacute;stica eficiente para entregas r&aacute;pidas.</p>
+                    </div>
+                </div>
+                <div class="feat-card anim">
+                    <div class="feat-card-icon"><i class="fa-solid fa-handshake"></i></div>
+                    <div class="feat-card-content">
+                        <h3>Atenci&oacute;n preferencial</h3>
+                        <p>Brindamos atenci&oacute;n personalizada a mayoristas y droguer&iacute;as.</p>
+                    </div>
+                </div>
+                <div class="feat-card anim">
+                    <div class="feat-card-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                    <div class="feat-card-content">
+                        <h3>Innovaci&oacute;n en productos</h3>
+                        <p>Incorporamos constantemente nuevos productos y tecnolog&iacute;as.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="nosotros">
+        <div class="container">
+            <div class="about-layout">
+                <div class="about-visual anim">
+                    <div class="about-visual-main">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="about-visual-accent">
+                        <h3>ANMAT</h3>
+                        <p>Habilitaci&oacute;n oficial</p>
+                    </div>
+                </div>
+                <div class="about-text anim">
+                    <div class="overline" style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.15em; color:var(--orange); margin-bottom:10px;">Sobre nosotros</div>
+                    <h2>Con experiencia y <em>compromiso</em></h2>
+                    <p>Somos una empresa con el respaldo de muchos a&ntilde;os recorriendo un camino que conocemos bien. Con el tiempo y experiencia acumulados, estamos seguros de ofrecer un modelo de negocios altamente conveniente.</p>
+                    <p>Nuestras oficinas y dep&oacute;sito est&aacute;n ubicados en la ciudad de C&oacute;rdoba, con f&aacute;cil acceso y estacionamiento propio.</p>
+                    <ul class="check-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Seriedad comercial impecable</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Distribuci&oacute;n exclusiva de marcas KEY y PROVEIN</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Habilitados por ANMAT</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Ubicaci&oacute;n estrat&eacute;gica en C&oacute;rdoba</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BRANDS -->
+    <section class="brands-section" id="marcas">
+        <div class="container">
+            <div class="section-head centered anim">
+                <div class="overline">Nuestros productos</div>
+                <h2>Marcas de productos</h2>
+                <p>Ofrecemos una gran variedad de marcas y calidad de productos descartables.</p>
+            </div>
+            <div class="brands-flex anim">
+                <div class="brand-item exclusive-brand">PROVEIN <span class="exc-tag">Exclusivo</span></div>
+                <div class="brand-item exclusive-brand">KEY <span class="exc-tag">Exclusivo</span></div>
+                <div class="brand-item">MEIYI</div>
+                <div class="brand-item">K-KAUTION</div>
+                <div class="brand-item">PRINTEX</div>
+                <div class="brand-item">AS</div>
+                <div class="brand-item">MEDISUL</div>
+                <div class="brand-item">HAND</div>
+                <div class="brand-item">INSUMOS XXI</div>
+                <div class="brand-item">DEXAL</div>
+                <div class="brand-item">DALIA</div>
+                <div class="brand-item">NEOJET</div>
+                <div class="brand-item">PIO PIO</div>
+                <div class="brand-item">FLAVIA</div>
+                <div class="brand-item">SAIL</div>
+                <div class="brand-item">ANADELIA</div>
+                <div class="brand-item">RUSCH</div>
+                <div class="brand-item">HIPOALERGIC</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section" id="contacto">
+        <div class="container">
+            <div class="section-head centered anim">
+                <div class="overline">Contacto</div>
+                <h2>Cont&aacute;ctenos</h2>
+                <p>Estamos a disposici&oacute;n para atender sus consultas y necesidades.</p>
+            </div>
+            <div class="contact-grid anim">
+                <div class="contact-item">
+                    <div class="contact-item-icon"><i class="fa-solid fa-phone"></i></div>
+                    <h3>Tel&eacute;fono</h3>
+                    <p>03543 440021 (l&iacute;neas rotativas)<br>Fax: 03543 422214</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                    <h3>WhatsApp</h3>
+                    <p><a href="https://wa.me/5493517352990">+54 9 351 735-2990</a></p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <h3>Email</h3>
+                    <p><a href="mailto:info@mercomed.com.ar">info@mercomed.com.ar</a></p>
+                </div>
+            </div>
+            <div class="hours-note anim">
+                <i class="fa-regular fa-clock"></i>
+                Lunes a Viernes de 8:00hs a 17:00hs
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">Mercomed S.A. <small>&copy; 2025</small></div>
+                <ul class="footer-links">
+                    <li><a href="#inicio">Home</a></li>
+                    <li><a href="#propuesta">Propuesta</a></li>
+                    <li><a href="#marcas">Productos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+                <div class="footer-badges">
+                    <span class="footer-badge-item">ANMAT</span>
+                    <span class="footer-badge-item">AFIP</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        });
+        navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            navLinks.classList.remove('show');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.add('fa-bars');
+            icon.classList.remove('fa-xmark');
+        }));
+
+        // Scroll animations
+        const animObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('show');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.anim').forEach(el => animObserver.observe(el));
+    </script>
+</body>
+</html>

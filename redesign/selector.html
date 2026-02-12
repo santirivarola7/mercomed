@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercomed S.A - Selector de Versiones</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --green: #0E6E45;
+            --green-dark: #094e31;
+            --green-light: #e8f5ee;
+            --orange: #EC5403;
+            --dark: #1a1f25;
+            --gray-100: #f5f6f7;
+            --gray-200: #e2e5e8;
+            --gray-500: #6b7280;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-100);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* === CONTROL BAR === */
+        .control-bar {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            z-index: 100;
+        }
+
+        .control-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--dark);
+        }
+
+        .control-brand .logo {
+            width: 36px;
+            height: 36px;
+            background: var(--green);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 0.95rem;
+        }
+
+        .control-brand span {
+            color: var(--gray-500);
+            font-weight: 400;
+            font-size: 0.85rem;
+            margin-left: 4px;
+        }
+
+        .version-tabs {
+            display: flex;
+            gap: 4px;
+            background: var(--gray-100);
+            padding: 4px;
+            border-radius: 12px;
+        }
+
+        .version-tab {
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray-500);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .version-tab:hover {
+            color: var(--dark);
+            background: rgba(255,255,255,0.6);
+        }
+
+        .version-tab.active {
+            background: var(--white);
+            color: var(--green);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .version-tab .tab-num {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            background: var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            transition: all 0.25s ease;
+        }
+
+        .version-tab.active .tab-num {
+            background: var(--green);
+            color: white;
+        }
+
+        .device-toggle {
+            display: flex;
+            gap: 4px;
+            background: var(--gray-100);
+            padding: 4px;
+            border-radius: 10px;
+        }
+
+        .device-btn {
+            width: 40px;
+            height: 36px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-500);
+            font-size: 1rem;
+            transition: all 0.25s ease;
+        }
+
+        .device-btn:hover { color: var(--dark); }
+        .device-btn.active {
+            background: var(--white);
+            color: var(--green);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        /* === PREVIEW AREA === */
+        .preview-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: var(--gray-100);
+            overflow: hidden;
+        }
+
+        .preview-frame-wrapper {
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+        }
+
+        .preview-frame-wrapper.tablet {
+            max-width: 768px;
+            border-radius: 20px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+        }
+
+        .preview-frame-wrapper.mobile {
+            max-width: 390px;
+            border-radius: 28px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+        }
+
+        .preview-frame-wrapper.mobile::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gray-200);
+            border-radius: 4px;
+            z-index: 10;
+        }
+
+        .preview-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* === BOTTOM INFO === */
+        .bottom-info {
+            background: var(--white);
+            border-top: 1px solid var(--gray-200);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+
+        .version-description {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .version-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--green);
+        }
+
+        .version-desc-text {
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .version-desc-detail {
+            color: var(--gray-500);
+            margin-left: 4px;
+            font-weight: 400;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .control-bar {
+                flex-wrap: wrap;
+                height: auto;
+                padding: 12px 16px;
+                gap: 12px;
+            }
+
+            .control-brand {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .version-tabs {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .version-tab {
+                padding: 8px 14px;
+                font-size: 0.78rem;
+            }
+
+            .version-tab .tab-label {
+                display: none;
+            }
+
+            .device-toggle {
+                display: none;
+            }
+
+            .preview-area {
+                padding: 12px;
+            }
+
+            .preview-frame-wrapper {
+                border-radius: 8px !important;
+            }
+
+            .preview-frame-wrapper::before {
+                display: none !important;
+            }
+
+            .bottom-info {
+                flex-direction: column;
+                gap: 4px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .version-tab {
+                padding: 8px 12px;
+                font-size: 0.75rem;
+            }
+
+            .control-brand span {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CONTROL BAR -->
+    <div class="control-bar">
+        <div class="control-brand">
+            <div class="logo">M</div>
+            Mercomed <span>Selector de versiones</span>
+        </div>
+
+        <div class="version-tabs" id="versionTabs">
+            <button class="version-tab active" data-version="version1.html" onclick="switchVersion(this)">
+                <span class="tab-num">1</span>
+                <span class="tab-label">Minimalista</span>
+            </button>
+            <button class="version-tab" data-version="version2.html" onclick="switchVersion(this)">
+                <span class="tab-num">2</span>
+                <span class="tab-label">Audaz</span>
+            </button>
+            <button class="version-tab" data-version="version3.html" onclick="switchVersion(this)">
+                <span class="tab-num">3</span>
+                <span class="tab-label">Elegante</span>
+            </button>
+        </div>
+
+        <div class="device-toggle" id="deviceToggle">
+            <button class="device-btn active" data-device="desktop" onclick="switchDevice(this)" title="Desktop">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </button>
+            <button class="device-btn" data-device="tablet" onclick="switchDevice(this)" title="Tablet">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </button>
+            <button class="device-btn" data-device="mobile" onclick="switchDevice(this)" title="Mobile">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- PREVIEW -->
+    <div class="preview-area">
+        <div class="preview-frame-wrapper" id="frameWrapper">
+            <iframe class="preview-iframe" id="previewIframe" src="version1.html"></iframe>
+        </div>
+    </div>
+
+    <!-- BOTTOM INFO -->
+    <div class="bottom-info" id="bottomInfo">
+        <div class="version-description">
+            <span class="version-dot"></span>
+            <span class="version-desc-text" id="versionName">Versi&oacute;n 1 &mdash; Minimalista Moderna</span>
+            <span class="version-desc-detail" id="versionDetail">Dise&ntilde;o limpio con mucho espacio, tarjetas sutiles y animaciones suaves.</span>
+        </div>
+        <div>Mercomed S.A. &bull; Redise&ntilde;o 2025</div>
+    </div>
+
+    <script>
+        const descriptions = {
+            'version1.html': {
+                name: 'Versi\u00f3n 1 \u2014 Minimalista Moderna',
+                detail: 'Dise\u00f1o limpio con mucho espacio, tarjetas sutiles y animaciones suaves.'
+            },
+            'version2.html': {
+                name: 'Versi\u00f3n 2 \u2014 Audaz y Din\u00e1mica',
+                detail: 'Hero oscuro impactante, numeraci\u00f3n bold, marquee de marcas y secci\u00f3n diagonal.'
+            },
+            'version3.html': {
+                name: 'Versi\u00f3n 3 \u2014 Elegante Corporativa',
+                detail: 'Hero dividido, topbar informativo, m\u00e9tricas destacadas y layout profesional.'
+            }
+        };
+
+        function switchVersion(btn) {
+            document.querySelectorAll('.version-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            const version = btn.dataset.version;
+            document.getElementById('previewIframe').src = version;
+            document.getElementById('versionName').textContent = descriptions[version].name;
+            document.getElementById('versionDetail').textContent = descriptions[version].detail;
+        }
+
+        function switchDevice(btn) {
+            document.querySelectorAll('.device-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const wrapper = document.getElementById('frameWrapper');
+            wrapper.classList.remove('tablet', 'mobile');
+            if (btn.dataset.device !== 'desktop') {
+                wrapper.classList.add(btn.dataset.device);
+            }
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === '1' || e.key === '2' || e.key === '3') {
+                const tabs = document.querySelectorAll('.version-tab');
+                switchVersion(tabs[parseInt(e.key) - 1]);
+            }
+        });
+    </script>
+</body>
+</html>
