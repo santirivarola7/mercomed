@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Mercomed S.A.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ========== RESET & BASE ========== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green: #0E6E45;
+            --green-dark: #0a5535;
+            --green-light: #e8f5ee;
+            --orange: #EC5403;
+            --dark: #1a2332;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', sans-serif;
+            --navbar-height: 72px;
+            --transition: 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--dark);
+            background-color: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--navbar-height);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .navbar-inner {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--dark);
+        }
+
+        .navbar-brand-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--green);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .navbar-brand-text {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            color: var(--gray-600);
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all var(--transition);
+            position: relative;
+        }
+
+        .navbar-links a:hover {
+            color: var(--green);
+            background: var(--green-light);
+        }
+
+        .navbar-links a.active {
+            color: var(--green);
+            background: var(--green-light);
+            font-weight: 600;
+        }
+
+        .navbar-links .nav-presupuesto {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--green);
+            color: var(--white);
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .navbar-links .nav-presupuesto:hover {
+            background: var(--green-dark);
+            color: var(--white);
+        }
+
+        .nav-badge {
+            background: var(--orange);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 700;
+            min-width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 6px;
+            line-height: 1;
+        }
+
+        .nav-badge.hidden {
+            display: none;
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--dark);
+            border-radius: 2px;
+            transition: all var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile menu overlay */
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+        }
+
+        /* ========== PAGE HEADER ========== */
+        .page-header {
+            padding-top: calc(var(--navbar-height) + 60px);
+            padding-bottom: 40px;
+            text-align: center;
+            background: var(--white);
+        }
+
+        .page-header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .page-header h1 {
+            font-family: var(--font-heading);
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: var(--gray-500);
+            font-weight: 400;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* ========== FILTERS SECTION ========== */
+        .filters-section {
+            max-width: 1200px;
+            margin: 0 auto 16px;
+            padding: 0 24px;
+        }
+
+        .filters-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select-wrapper {
+            position: relative;
+            flex: 1;
+            min-width: 220px;
+            max-width: 320px;
+        }
+
+        .filter-select-wrapper i.fa-chevron-down {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            color: var(--gray-400);
+            pointer-events: none;
+        }
+
+        .filter-select {
+            width: 100%;
+            padding: 12px 40px 12px 16px;
+            font-size: 14px;
+            font-family: var(--font-body);
+            color: var(--dark);
+            background: var(--white);
+            border: 1.5px solid var(--gray-200);
+            border-radius: 10px;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            transition: border-color var(--transition), box-shadow var(--transition);
+            outline: none;
+        }
+
+        .filter-select:hover {
+            border-color: var(--gray-300);
+        }
+
+        .filter-select:focus {
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(14, 110, 69, 0.1);
+        }
+
+        .filter-select.has-value {
+            border-color: var(--green);
+            color: var(--green-dark);
+            font-weight: 500;
+        }
+
+        .btn-clear-filters {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-family: var(--font-body);
+            font-weight: 500;
+            color: var(--gray-500);
+            background: var(--gray-50);
+            border: 1.5px solid var(--gray-200);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+
+        .btn-clear-filters.visible {
+            display: inline-flex;
+        }
+
+        .btn-clear-filters:hover {
+            color: var(--orange);
+            border-color: var(--orange);
+            background: #fff5f0;
+        }
+
+        /* Active filter chips */
+        .active-filters {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .active-filters:empty {
+            margin-top: 0;
+        }
+
+        .filter-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--green-dark);
+            background: var(--green-light);
+            border-radius: 20px;
+            border: none;
+            cursor: default;
+            animation: chipIn 0.2s ease;
+        }
+
+        @keyframes chipIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .filter-chip .chip-remove {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(14, 110, 69, 0.15);
+            border: none;
+            cursor: pointer;
+            color: var(--green-dark);
+            font-size: 10px;
+            transition: background var(--transition);
+            padding: 0;
+            line-height: 1;
+        }
+
+        .filter-chip .chip-remove:hover {
+            background: rgba(14, 110, 69, 0.3);
+        }
+
+        /* Product count */
+        .product-count-bar {
+            max-width: 1200px;
+            margin: 0 auto 24px;
+            padding: 0 24px;
+        }
+
+        .product-count {
+            font-size: 14px;
+            color: var(--gray-500);
+            font-weight: 400;
+        }
+
+        .product-count strong {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        /* ========== PRODUCT GRID ========== */
+        .products-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border: 1.5px solid var(--gray-200);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+            animation: fadeUp 0.4s ease both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .product-card:hover {
+            border-color: var(--gray-300);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .product-card-image {
+            aspect-ratio: 1 / 1;
+            background: var(--gray-50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .product-card-image i {
+            font-size: 40px;
+            color: var(--gray-300);
+        }
+
+        .product-card-body {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .product-card-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .product-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 6px;
+            letter-spacing: 0.2px;
+            white-space: nowrap;
+        }
+
+        .tag-rubro {
+            background: var(--green-light);
+            color: var(--green-dark);
+        }
+
+        .tag-marca {
+            background: var(--gray-100);
+            color: var(--gray-600);
+        }
+
+        .product-card-footer {
+            padding: 0 18px 18px;
+            margin-top: auto;
+        }
+
+        .btn-add {
+            width: 100%;
+            padding: 11px 16px;
+            font-size: 13px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            color: var(--green);
+            background: transparent;
+            border: 1.5px solid var(--green);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-height: 44px;
+        }
+
+        .btn-add:hover {
+            background: var(--green);
+            color: var(--white);
+        }
+
+        .btn-add.added {
+            background: var(--green);
+            color: var(--white);
+            border-color: var(--green);
+            pointer-events: none;
+        }
+
+        /* No results */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .no-results i {
+            font-size: 48px;
+            color: var(--gray-300);
+            margin-bottom: 16px;
+        }
+
+        .no-results h3 {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .no-results p {
+            font-size: 15px;
+            color: var(--gray-500);
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 24px 30px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--green);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .footer-brand-text {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .footer-desc {
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer h4 {
+            font-family: var(--font-heading);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 14px;
+            font-size: 14px;
+        }
+
+        .footer-contact-item i {
+            color: var(--green);
+            margin-top: 3px;
+            width: 16px;
+            text-align: center;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .footer-bottom a:hover {
+            color: var(--white);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .navbar-links {
+                position: fixed;
+                top: 0;
+                right: -300px;
+                width: 280px;
+                height: 100vh;
+                background: var(--white);
+                flex-direction: column;
+                align-items: stretch;
+                padding: 80px 24px 24px;
+                gap: 4px;
+                box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+                transition: right var(--transition);
+                z-index: 999;
+            }
+
+            .navbar-links.active {
+                right: 0;
+            }
+
+            .mobile-overlay.active {
+                display: block;
+            }
+
+            .navbar-links a {
+                padding: 12px 16px;
+                font-size: 15px;
+                border-radius: 10px;
+            }
+
+            .navbar-links .nav-presupuesto {
+                margin-top: 8px;
+                justify-content: center;
+                padding: 12px 18px;
+            }
+
+            .page-header {
+                padding-top: calc(var(--navbar-height) + 40px);
+                padding-bottom: 28px;
+            }
+
+            .page-header h1 {
+                font-size: 30px;
+            }
+
+            .page-header p {
+                font-size: 16px;
+            }
+
+            .filter-select-wrapper {
+                max-width: none;
+                flex: 1 1 100%;
+            }
+
+            .filters-row {
+                gap: 12px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+
+            .product-card-body {
+                padding: 14px;
+            }
+
+            .product-card-name {
+                font-size: 14px;
+            }
+
+            .product-card-footer {
+                padding: 0 14px 14px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .product-card-image i {
+                font-size: 30px;
+            }
+
+            .product-card-name {
+                font-size: 13px;
+                margin-bottom: 8px;
+            }
+
+            .product-card-tags {
+                margin-bottom: 10px;
+            }
+
+            .tag {
+                font-size: 10px;
+                padding: 3px 7px;
+            }
+
+            .btn-add {
+                font-size: 11px;
+                padding: 9px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="navbar-brand">
+                <div class="navbar-brand-icon">M</div>
+                <span class="navbar-brand-text">Mercomed</span>
+            </a>
+            <ul class="navbar-links" id="navLinks">
+                <li><a href="index.html">INICIO</a></li>
+                <li><a href="productos.html" class="active">PRODUCTOS</a></li>
+                <li><a href="contacto.html">CONTACTO</a></li>
+                <li>
+                    <a href="#" class="nav-presupuesto">
+                        <i class="fa-solid fa-file-lines"></i>
+                        MI PRESUPUESTO
+                        <span class="nav-badge hidden" id="navBadge">0</span>
+                    </a>
+                </li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- ========== PAGE HEADER ========== -->
+    <section class="page-header">
+        <div class="page-header-inner">
+            <h1>Nuestros Productos</h1>
+            <p>Explorá nuestra variedad de productos médico hospitalarios</p>
+        </div>
+    </section>
+
+    <!-- ========== FILTERS ========== -->
+    <div class="filters-section">
+        <div class="filters-row">
+            <div class="filter-select-wrapper">
+                <select class="filter-select" id="filterRubro">
+                    <option value="">Filtrar por Rubro</option>
+                    <option value="Guantes de examinación">Guantes de examinación</option>
+                    <option value="Catéteres I.V.">Catéteres I.V.</option>
+                    <option value="Jeringas descartables">Jeringas descartables</option>
+                    <option value="Agujas hipodérmicas">Agujas hipodérmicas</option>
+                    <option value="Apósitos y gasas">Apósitos y gasas</option>
+                    <option value="Barbijos y cofias">Barbijos y cofias</option>
+                    <option value="Sondas">Sondas</option>
+                    <option value="Descartables quirúrgicos">Descartables quirúrgicos</option>
+                    <option value="Cintas adhesivas">Cintas adhesivas</option>
+                    <option value="Equipos de venoclisis">Equipos de venoclisis</option>
+                </select>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <div class="filter-select-wrapper">
+                <select class="filter-select" id="filterMarca">
+                    <option value="">Filtrar por Marca</option>
+                    <option value="PROVEIN">PROVEIN</option>
+                    <option value="KEY">KEY</option>
+                    <option value="MEIYI">MEIYI</option>
+                    <option value="K-KAUTION">K-KAUTION</option>
+                    <option value="PRINTEX">PRINTEX</option>
+                    <option value="AS">AS</option>
+                    <option value="MEDISUL">MEDISUL</option>
+                    <option value="HAND">HAND</option>
+                    <option value="INSUMOS XXI">INSUMOS XXI</option>
+                    <option value="DEXAL">DEXAL</option>
+                    <option value="DALIA">DALIA</option>
+                    <option value="NEOJET">NEOJET</option>
+                    <option value="PIO PIO">PIO PIO</option>
+                    <option value="FLAVIA">FLAVIA</option>
+                    <option value="SAIL">SAIL</option>
+                    <option value="ANADELIA">ANADELIA</option>
+                    <option value="RUSCH">RUSCH</option>
+                    <option value="HIPOALERGIC">HIPOALERGIC</option>
+                </select>
+                <i class="fa-solid fa-chevron-down"></i>
+            </div>
+            <button class="btn-clear-filters" id="btnClearFilters">
+                <i class="fa-solid fa-xmark"></i>
+                Limpiar filtros
+            </button>
+        </div>
+        <div class="active-filters" id="activeFilters"></div>
+    </div>
+
+    <!-- ========== PRODUCT COUNT ========== -->
+    <div class="product-count-bar">
+        <p class="product-count" id="productCount">Mostrando <strong>36</strong> de <strong>36</strong> productos</p>
+    </div>
+
+    <!-- ========== PRODUCT GRID ========== -->
+    <section class="products-section">
+        <div class="product-grid" id="productGrid">
+            <!-- Products rendered by JS -->
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div>
+                <div class="footer-brand">
+                    <div class="footer-brand-icon">M</div>
+                    <span class="footer-brand-text">Mercomed</span>
+                </div>
+                <p class="footer-desc">
+                    Distribuidora de insumos médico hospitalarios. Más de 20 años abasteciendo al sector salud con productos de calidad.
+                </p>
+            </div>
+            <div>
+                <h4>Navegación</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Rubros</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Guantes</a></li>
+                    <li><a href="#">Jeringas</a></li>
+                    <li><a href="#">Catéteres</a></li>
+                    <li><a href="#">Descartables</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contacto</h4>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>(011) 4444-5555</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>ventas@mercomed.com.ar</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Buenos Aires, Argentina</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Mercomed S.A. Todos los derechos reservados.</span>
+            <a href="#">Política de privacidad</a>
+        </div>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // ===== Product Data =====
+        const products = [
+            { nombre: "Guantes de látex talle S", rubro: "Guantes de examinación", marca: "KEY" },
+            { nombre: "Guantes de látex talle M", rubro: "Guantes de examinación", marca: "KEY" },
+            { nombre: "Guantes de látex talle L", rubro: "Guantes de examinación", marca: "KEY" },
+            { nombre: "Guantes de nitrilo talle S", rubro: "Guantes de examinación", marca: "MEDISUL" },
+            { nombre: "Guantes de nitrilo talle M", rubro: "Guantes de examinación", marca: "MEDISUL" },
+            { nombre: "Guantes de vinilo talle M", rubro: "Guantes de examinación", marca: "HAND" },
+            { nombre: "Guante de cirugía talle 7", rubro: "Guantes de examinación", marca: "PIO PIO" },
+            { nombre: "Catéter I.V. 18G", rubro: "Catéteres I.V.", marca: "PROVEIN" },
+            { nombre: "Catéter I.V. 20G", rubro: "Catéteres I.V.", marca: "PROVEIN" },
+            { nombre: "Catéter I.V. 22G", rubro: "Catéteres I.V.", marca: "PROVEIN" },
+            { nombre: "Catéter I.V. 24G", rubro: "Catéteres I.V.", marca: "PROVEIN" },
+            { nombre: "Jeringa descartable 1ml", rubro: "Jeringas descartables", marca: "MEIYI" },
+            { nombre: "Jeringa descartable 3ml", rubro: "Jeringas descartables", marca: "DEXAL" },
+            { nombre: "Jeringa descartable 5ml", rubro: "Jeringas descartables", marca: "MEIYI" },
+            { nombre: "Jeringa descartable 10ml", rubro: "Jeringas descartables", marca: "MEIYI" },
+            { nombre: "Jeringa descartable 20ml", rubro: "Jeringas descartables", marca: "MEIYI" },
+            { nombre: "Aguja hipodérmica 21G", rubro: "Agujas hipodérmicas", marca: "MEIYI" },
+            { nombre: "Aguja hipodérmica 23G", rubro: "Agujas hipodérmicas", marca: "MEIYI" },
+            { nombre: "Apósito adhesivo 10x10", rubro: "Apósitos y gasas", marca: "HIPOALERGIC" },
+            { nombre: "Apósito transparente", rubro: "Apósitos y gasas", marca: "INSUMOS XXI" },
+            { nombre: "Gasa estéril 10x10", rubro: "Apósitos y gasas", marca: "DALIA" },
+            { nombre: "Gasa estéril 20x20", rubro: "Apósitos y gasas", marca: "DALIA" },
+            { nombre: "Barbijo tricapa", rubro: "Barbijos y cofias", marca: "PRINTEX" },
+            { nombre: "Barbijo N95", rubro: "Barbijos y cofias", marca: "K-KAUTION" },
+            { nombre: "Cofia descartable", rubro: "Barbijos y cofias", marca: "PRINTEX" },
+            { nombre: "Sonda nasogástrica K33", rubro: "Sondas", marca: "RUSCH" },
+            { nombre: "Sonda Foley 2 vías", rubro: "Sondas", marca: "RUSCH" },
+            { nombre: "Sonda rectal", rubro: "Sondas", marca: "ANADELIA" },
+            { nombre: "Camisolín descartable", rubro: "Descartables quirúrgicos", marca: "NEOJET" },
+            { nombre: "Campo quirúrgico estéril", rubro: "Descartables quirúrgicos", marca: "NEOJET" },
+            { nombre: "Sábana descartable", rubro: "Descartables quirúrgicos", marca: "FLAVIA" },
+            { nombre: "Cinta adhesiva microporosa", rubro: "Cintas adhesivas", marca: "HIPOALERGIC" },
+            { nombre: "Cinta adhesiva de tela", rubro: "Cintas adhesivas", marca: "AS" },
+            { nombre: "Equipo de venoclisis macro", rubro: "Equipos de venoclisis", marca: "SAIL" },
+            { nombre: "Equipo de venoclisis micro", rubro: "Equipos de venoclisis", marca: "SAIL" },
+            { nombre: "Llave de 3 vías", rubro: "Equipos de venoclisis", marca: "PROVEIN" }
+        ];
+
+        // ===== Icon map per rubro =====
+        const rubroIcons = {
+            "Guantes de examinación": "fa-hand",
+            "Catéteres I.V.": "fa-syringe",
+            "Jeringas descartables": "fa-syringe",
+            "Agujas hipodérmicas": "fa-syringe",
+            "Apósitos y gasas": "fa-bandage",
+            "Barbijos y cofias": "fa-head-side-mask",
+            "Sondas": "fa-stethoscope",
+            "Descartables quirúrgicos": "fa-shirt",
+            "Cintas adhesivas": "fa-tape",
+            "Equipos de venoclisis": "fa-vial"
+        };
+
+        // ===== DOM Elements =====
+        const filterRubro = document.getElementById('filterRubro');
+        const filterMarca = document.getElementById('filterMarca');
+        const btnClearFilters = document.getElementById('btnClearFilters');
+        const activeFiltersContainer = document.getElementById('activeFilters');
+        const productGrid = document.getElementById('productGrid');
+        const productCount = document.getElementById('productCount');
+        const navBadge = document.getElementById('navBadge');
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        // ===== Badge =====
+        function updateBadge() {
+            const count = parseInt(localStorage.getItem('mercomed_presupuesto_count') || '0', 10);
+            if (count > 0) {
+                navBadge.textContent = count;
+                navBadge.classList.remove('hidden');
+            } else {
+                navBadge.classList.add('hidden');
+            }
+        }
+
+        function incrementBadge() {
+            let count = parseInt(localStorage.getItem('mercomed_presupuesto_count') || '0', 10);
+            count++;
+            localStorage.setItem('mercomed_presupuesto_count', count.toString());
+            updateBadge();
+        }
+
+        // ===== Render Products =====
+        function renderProducts() {
+            const selectedRubro = filterRubro.value;
+            const selectedMarca = filterMarca.value;
+
+            const filtered = products.filter(p => {
+                const matchRubro = !selectedRubro || p.rubro === selectedRubro;
+                const matchMarca = !selectedMarca || p.marca === selectedMarca;
+                return matchRubro && matchMarca;
+            });
+
+            // Update select styling
+            filterRubro.classList.toggle('has-value', !!selectedRubro);
+            filterMarca.classList.toggle('has-value', !!selectedMarca);
+
+            // Show/hide clear button
+            const hasFilters = selectedRubro || selectedMarca;
+            btnClearFilters.classList.toggle('visible', !!hasFilters);
+
+            // Render active filter chips
+            activeFiltersContainer.innerHTML = '';
+            if (selectedRubro) {
+                const chip = createChip('Rubro: ' + selectedRubro, () => {
+                    filterRubro.value = '';
+                    renderProducts();
+                });
+                activeFiltersContainer.appendChild(chip);
+            }
+            if (selectedMarca) {
+                const chip = createChip('Marca: ' + selectedMarca, () => {
+                    filterMarca.value = '';
+                    renderProducts();
+                });
+                activeFiltersContainer.appendChild(chip);
+            }
+
+            // Update count
+            productCount.innerHTML = `Mostrando <strong>${filtered.length}</strong> de <strong>${products.length}</strong> productos`;
+
+            // Render grid
+            productGrid.innerHTML = '';
+
+            if (filtered.length === 0) {
+                productGrid.innerHTML = `
+                    <div class="no-results">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <h3>No se encontraron productos</h3>
+                        <p>Probá ajustando los filtros para ver más resultados.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach((product, index) => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.style.animationDelay = `${index * 0.03}s`;
+
+                const iconClass = rubroIcons[product.rubro] || 'fa-kit-medical';
+
+                card.innerHTML = `
+                    <div class="product-card-image">
+                        <i class="fa-solid ${iconClass}"></i>
+                    </div>
+                    <div class="product-card-body">
+                        <div class="product-card-name">${product.nombre}</div>
+                        <div class="product-card-tags">
+                            <span class="tag tag-rubro">${product.rubro}</span>
+                            <span class="tag tag-marca">${product.marca}</span>
+                        </div>
+                    </div>
+                    <div class="product-card-footer">
+                        <button class="btn-add" onclick="addToPresupuesto(this)">
+                            AÑADIR AL PRESUPUESTO
+                        </button>
+                    </div>
+                `;
+
+                productGrid.appendChild(card);
+            });
+        }
+
+        function createChip(label, onRemove) {
+            const chip = document.createElement('div');
+            chip.className = 'filter-chip';
+            chip.innerHTML = `
+                <span>${label}</span>
+                <button class="chip-remove" aria-label="Quitar filtro"><i class="fa-solid fa-xmark"></i></button>
+            `;
+            chip.querySelector('.chip-remove').addEventListener('click', onRemove);
+            return chip;
+        }
+
+        // ===== Add to Presupuesto =====
+        function addToPresupuesto(btn) {
+            incrementBadge();
+            btn.classList.add('added');
+            btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+            setTimeout(() => {
+                btn.classList.remove('added');
+                btn.innerHTML = 'AÑADIR AL PRESUPUESTO';
+            }, 800);
+        }
+
+        // ===== Filter Events =====
+        filterRubro.addEventListener('change', renderProducts);
+        filterMarca.addEventListener('change', renderProducts);
+
+        btnClearFilters.addEventListener('click', () => {
+            filterRubro.value = '';
+            filterMarca.value = '';
+            renderProducts();
+        });
+
+        // ===== Mobile Menu =====
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        });
+
+        mobileOverlay.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Close mobile menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // ===== Init =====
+        updateBadge();
+        renderProducts();
+    </script>
+
+</body>
+</html>

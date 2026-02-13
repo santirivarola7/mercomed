@@ -1,0 +1,1945 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos — Mercomed S.A.</title>
+    <meta name="description" content="Catalogo de productos medico hospitalarios de Mercomed S.A. Guantes, cateteres, jeringas, apositos, barbijos y mas. Solicita tu presupuesto.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* =========================================
+           RESET & BASE
+           ========================================= */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green: #0E6E45;
+            --green-dark: #094e31;
+            --green-light: #e8f5ee;
+            --green-muted: #f4faf7;
+            --orange: #EC5403;
+            --orange-soft: #f07830;
+            --cream: #faf8f5;
+            --dark: #1a1f25;
+            --dark-warm: #2a2e34;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', sans-serif;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 50px rgba(0,0,0,0.12);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--dark);
+            background: var(--white);
+            line-height: 1.7;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            line-height: 1.25;
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        ul, ol {
+            list-style: none;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* =========================================
+           TOPBAR
+           ========================================= */
+        .topbar {
+            background: var(--green);
+            color: var(--white);
+            font-size: 13px;
+            padding: 8px 0;
+            letter-spacing: 0.02em;
+        }
+
+        .topbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .topbar-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--white);
+            opacity: 0.92;
+            transition: var(--transition);
+        }
+
+        .topbar-item:hover {
+            opacity: 1;
+        }
+
+        .topbar-item i {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            opacity: 0.85;
+            font-size: 12px;
+        }
+
+        .topbar-right i {
+            font-size: 11px;
+        }
+
+        /* =========================================
+           NAVIGATION
+           ========================================= */
+        .navbar {
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: box-shadow var(--transition);
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .brand-icon {
+            width: 38px;
+            height: 38px;
+            background: var(--green);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: 0 0 0 3px var(--green-light), 0 0 0 4px var(--green);
+            flex-shrink: 0;
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-600);
+            border-bottom: 2px solid transparent;
+            transition: var(--transition);
+            position: relative;
+            letter-spacing: 0.01em;
+        }
+
+        .nav-link:hover {
+            color: var(--green);
+        }
+
+        .nav-link.active {
+            color: var(--green);
+            border-bottom-color: var(--green);
+        }
+
+        .nav-link--cta {
+            background: var(--green);
+            color: var(--white) !important;
+            border-radius: var(--radius-sm);
+            border-bottom: 2px solid transparent !important;
+            margin-left: 8px;
+            padding: 8px 20px;
+        }
+
+        .nav-link--cta:hover {
+            background: var(--green-dark);
+            color: var(--white) !important;
+        }
+
+        .nav-badge {
+            background: var(--green);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 700;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .nav-link--cta .nav-badge {
+            background: var(--white);
+            color: var(--green);
+        }
+
+        /* Hamburger */
+        .navbar-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding: 8px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .navbar-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--dark);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .navbar-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .navbar-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .navbar-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .navbar-mobile {
+            display: none;
+            position: absolute;
+            top: 72px;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-lg);
+            padding: 16px 24px;
+            z-index: 999;
+        }
+
+        .navbar-mobile.open {
+            display: block;
+        }
+
+        .navbar-mobile .nav-link {
+            display: flex;
+            width: 100%;
+            padding: 12px 16px;
+            border-bottom: none;
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+        }
+
+        .navbar-mobile .nav-link:hover,
+        .navbar-mobile .nav-link.active {
+            background: var(--green-light);
+            border-bottom: none;
+        }
+
+        .navbar-mobile .nav-link--cta {
+            margin-left: 0;
+            margin-top: 8px;
+            justify-content: center;
+        }
+
+        /* =========================================
+           PAGE HERO
+           ========================================= */
+        .page-hero {
+            background: linear-gradient(160deg, var(--green), var(--green-dark));
+            padding: 72px 0 64px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .page-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .page-hero-tag-line {
+            width: 28px;
+            height: 2px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 2px;
+        }
+
+        .page-hero-tag-text {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.75);
+        }
+
+        .page-hero h1 {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 14px;
+            line-height: 1.15;
+        }
+
+        .page-hero h1 em {
+            font-style: italic;
+            color: var(--green-light);
+        }
+
+        .page-hero-desc {
+            font-size: 16px;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+            max-width: 580px;
+        }
+
+        .page-hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .page-hero-stat {
+            text-align: left;
+        }
+
+        .page-hero-stat-number {
+            font-family: var(--font-heading);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1;
+        }
+
+        .page-hero-stat-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.65);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* =========================================
+           BUTTONS
+           ========================================= */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 28px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            letter-spacing: 0.01em;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .btn-green {
+            background: var(--green);
+            color: var(--white);
+            border-color: var(--green);
+        }
+
+        .btn-green:hover {
+            background: var(--green-dark);
+            border-color: var(--green-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--dark);
+            border: 2px solid var(--gray-300);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--green);
+            color: var(--green);
+            transform: translateY(-1px);
+        }
+
+        .btn-sm {
+            padding: 9px 18px;
+            font-size: 13px;
+        }
+
+        .btn-orange {
+            background: var(--orange);
+            color: var(--white);
+            border-color: var(--orange);
+        }
+
+        .btn-orange:hover {
+            background: var(--orange-soft);
+            border-color: var(--orange-soft);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* =========================================
+           SECTION STYLING
+           ========================================= */
+        .section {
+            padding: 90px 0;
+        }
+
+        .section--cream {
+            background: var(--cream);
+        }
+
+        .section-head {
+            text-align: center;
+            margin-bottom: 56px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-overline {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 14px;
+        }
+
+        .section-overline::before {
+            content: '';
+            width: 28px;
+            height: 2px;
+            background: var(--orange);
+            border-radius: 2px;
+        }
+
+        .section-overline::after {
+            content: '';
+            width: 28px;
+            height: 2px;
+            background: var(--orange);
+            border-radius: 2px;
+        }
+
+        .section-head h2 {
+            font-size: clamp(28px, 3.5vw, 40px);
+            color: var(--dark);
+            margin-bottom: 14px;
+        }
+
+        .section-head h2 em {
+            color: var(--green);
+            font-style: italic;
+        }
+
+        .section-head p {
+            font-size: 15px;
+            color: var(--gray-500);
+            line-height: 1.7;
+        }
+
+        /* =========================================
+           FILTER CONTROLS
+           ========================================= */
+        .filters {
+            background: var(--cream);
+            border-bottom: 1px solid var(--gray-200);
+            padding: 28px 0;
+        }
+
+        .filters-inner {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filters-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .filters-label i {
+            color: var(--green);
+            font-size: 16px;
+        }
+
+        .filter-select {
+            appearance: none;
+            -webkit-appearance: none;
+            background: var(--white);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-sm);
+            padding: 10px 40px 10px 14px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8.825L.35 3.175l.7-.7L6 7.425l4.95-4.95.7.7z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            min-width: 200px;
+        }
+
+        .filter-select:hover {
+            border-color: var(--green);
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px var(--green-light);
+        }
+
+        .filters-count {
+            margin-left: auto;
+            font-size: 13px;
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+
+        .filters-count strong {
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        /* =========================================
+           PRODUCT GRID
+           ========================================= */
+        .products-section {
+            padding: 60px 0 90px;
+            background: var(--white);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            border-color: var(--green);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+
+        .product-card-image {
+            background: var(--green-light);
+            padding: 32px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 160px;
+            position: relative;
+        }
+
+        .product-card-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            font-size: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .product-card-rubro {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--green);
+            color: var(--white);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .product-card-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card-title {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .product-card-brands {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .product-card-brands strong {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .product-card-details {
+            font-size: 13px;
+            color: var(--gray-500);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            flex: 1;
+        }
+
+        .product-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .product-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            background: var(--gray-100);
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--gray-600);
+            letter-spacing: 0.02em;
+        }
+
+        .product-tag--exclusive {
+            background: var(--green-light);
+            color: var(--green);
+        }
+
+        .product-card-footer {
+            padding: 0 20px 20px;
+        }
+
+        .btn-presupuesto {
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 11px 20px;
+            font-family: var(--font-body);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--green);
+            background: var(--green-light);
+            border: 1px solid transparent;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            letter-spacing: 0.01em;
+        }
+
+        .btn-presupuesto:hover {
+            background: var(--green);
+            color: var(--white);
+            border-color: var(--green);
+        }
+
+        .btn-presupuesto.added {
+            background: var(--green);
+            color: var(--white);
+            border-color: var(--green);
+        }
+
+        .btn-presupuesto.added i::before {
+            content: "\f00c";
+        }
+
+        /* =========================================
+           NO RESULTS
+           ========================================= */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            display: none;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        .no-results-icon {
+            width: 72px;
+            height: 72px;
+            background: var(--gray-100);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            color: var(--gray-400);
+        }
+
+        .no-results h3 {
+            font-size: 20px;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .no-results p {
+            font-size: 14px;
+            color: var(--gray-500);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* =========================================
+           CTA SECTION
+           ========================================= */
+        .cta-section {
+            background: var(--cream);
+            padding: 72px 0;
+        }
+
+        .cta-inner {
+            background: linear-gradient(160deg, var(--green), var(--green-dark));
+            border-radius: var(--radius-lg);
+            padding: 56px 48px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-inner::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cta-inner::after {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-content .section-overline {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .cta-content .section-overline::before,
+        .cta-content .section-overline::after {
+            background: rgba(255,255,255,0.4);
+        }
+
+        .cta-content h2 {
+            font-size: clamp(26px, 3vw, 36px);
+            color: var(--white);
+            margin-bottom: 14px;
+        }
+
+        .cta-content h2 em {
+            color: var(--green-light);
+            font-style: italic;
+        }
+
+        .cta-content p {
+            font-size: 15px;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+            max-width: 520px;
+            margin: 0 auto 28px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--green);
+            border-color: var(--white);
+            font-weight: 600;
+        }
+
+        .btn-white:hover {
+            background: var(--green-light);
+            border-color: var(--green-light);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.35);
+        }
+
+        .btn-outline-white:hover {
+            border-color: var(--white);
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-1px);
+        }
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+        .footer {
+            background: var(--dark);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 40px 0 28px;
+            color: var(--gray-400);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-brand .brand-icon {
+            width: 32px;
+            height: 32px;
+            font-size: 16px;
+            box-shadow: 0 0 0 2px var(--green-dark), 0 0 0 3px var(--green);
+        }
+
+        .footer-brand-text {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .footer-copy {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+
+        .footer-nav {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .footer-nav a {
+            font-size: 13px;
+            color: var(--gray-400);
+            transition: var(--transition);
+        }
+
+        .footer-nav a:hover {
+            color: var(--green-light);
+        }
+
+        .footer-badges {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-sm);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--gray-400);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .footer-badge i {
+            color: var(--green);
+            font-size: 13px;
+        }
+
+        /* =========================================
+           TOAST NOTIFICATION
+           ========================================= */
+        .toast {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            background: var(--dark);
+            color: var(--white);
+            padding: 14px 24px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: var(--shadow-xl);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .toast-icon {
+            width: 28px;
+            height: 28px;
+            background: var(--green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        /* =========================================
+           ANIMATIONS
+           ========================================= */
+        .anim {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .anim.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .anim-delay-1 { transition-delay: 0.1s; }
+        .anim-delay-2 { transition-delay: 0.2s; }
+        .anim-delay-3 { transition-delay: 0.3s; }
+        .anim-delay-4 { transition-delay: 0.4s; }
+        .anim-delay-5 { transition-delay: 0.5s; }
+        .anim-delay-6 { transition-delay: 0.6s; }
+
+        /* =========================================
+           RESPONSIVE: 1024px
+           ========================================= */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            }
+
+            .page-hero-stats {
+                gap: 28px;
+            }
+        }
+
+        /* =========================================
+           RESPONSIVE: 768px
+           ========================================= */
+        @media (max-width: 768px) {
+            .topbar {
+                display: none;
+            }
+
+            .navbar-nav {
+                display: none;
+            }
+
+            .navbar-toggle {
+                display: flex;
+            }
+
+            .page-hero {
+                padding: 48px 0;
+            }
+
+            .page-hero h1 {
+                font-size: 28px;
+            }
+
+            .page-hero-stats {
+                gap: 24px;
+            }
+
+            .page-hero-stat-number {
+                font-size: 22px;
+            }
+
+            .section {
+                padding: 64px 0;
+            }
+
+            .products-section {
+                padding: 40px 0 64px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                gap: 16px;
+            }
+
+            .filters-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-select {
+                min-width: 100%;
+            }
+
+            .filters-count {
+                margin-left: 0;
+                text-align: center;
+            }
+
+            .cta-inner {
+                padding: 40px 24px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .footer-badges {
+                justify-content: center;
+            }
+        }
+
+        /* =========================================
+           RESPONSIVE: 480px
+           ========================================= */
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-hero-stats {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+            }
+
+            .toast {
+                left: 16px;
+                right: 16px;
+                bottom: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+         TOPBAR
+         ========================================== -->
+    <div class="topbar">
+        <div class="container">
+            <div class="topbar-left">
+                <a href="tel:03543440021" class="topbar-item">
+                    <i class="fas fa-phone"></i>
+                    <span>03543 440021</span>
+                </a>
+                <a href="mailto:info@mercomed.com.ar" class="topbar-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>info@mercomed.com.ar</span>
+                </a>
+                <a href="https://wa.me/5493517352990" target="_blank" class="topbar-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>+54 9 351 735-2990</span>
+                </a>
+            </div>
+            <div class="topbar-right">
+                <i class="far fa-clock"></i>
+                <span>Lun - Vie: 8:00hs a 17:00hs</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         NAVIGATION
+         ========================================== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <div class="brand-icon">M</div>
+                <span>Mercomed</span>
+            </a>
+
+            <div class="navbar-nav" id="navbarNav">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="productos.html" class="nav-link active">Productos</a>
+                <a href="contacto.html" class="nav-link nav-link--cta">Contacto</a>
+                <a href="presupuesto.html" class="nav-link" id="navPresupuesto" style="display:none;">
+                    Mi Presupuesto
+                    <span class="nav-badge" id="navPresupuestoBadge">0</span>
+                </a>
+            </div>
+
+            <button class="navbar-toggle" id="navbarToggle" aria-label="Menu de navegacion">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div class="navbar-mobile" id="navbarMobile">
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="productos.html" class="nav-link active">Productos</a>
+            <a href="contacto.html" class="nav-link nav-link--cta">Contacto</a>
+            <a href="presupuesto.html" class="nav-link" id="navPresupuestoMobile" style="display:none;">
+                Mi Presupuesto
+                <span class="nav-badge" id="navPresupuestoBadgeMobile">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- ==========================================
+         PAGE HERO
+         ========================================== -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-tag anim">
+                <div class="page-hero-tag-line"></div>
+                <span class="page-hero-tag-text">Catalogo de productos</span>
+            </div>
+            <h1 class="anim anim-delay-1">Nuestros <em>productos</em></h1>
+            <p class="page-hero-desc anim anim-delay-2">Explorá nuestro catalogo completo de productos medico hospitalarios. Trabajamos con las marcas mas reconocidas del mercado para ofrecer calidad, disponibilidad y precios competitivos.</p>
+            <div class="page-hero-stats anim anim-delay-3">
+                <div class="page-hero-stat">
+                    <div class="page-hero-stat-number">10+</div>
+                    <div class="page-hero-stat-label">Categorias</div>
+                </div>
+                <div class="page-hero-stat">
+                    <div class="page-hero-stat-number">20+</div>
+                    <div class="page-hero-stat-label">Marcas</div>
+                </div>
+                <div class="page-hero-stat">
+                    <div class="page-hero-stat-number">ANMAT</div>
+                    <div class="page-hero-stat-label">Habilitados</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FILTER CONTROLS
+         ========================================== -->
+    <div class="filters">
+        <div class="container">
+            <div class="filters-inner">
+                <div class="filters-label">
+                    <i class="fas fa-sliders"></i>
+                    Filtrar por:
+                </div>
+                <select class="filter-select" id="filterRubro" aria-label="Filtrar por rubro">
+                    <option value="">Todos los rubros</option>
+                    <option value="guantes">Guantes</option>
+                    <option value="cateteres">Cateteres I.V.</option>
+                    <option value="jeringas">Jeringas descartables</option>
+                    <option value="agujas">Agujas hipodermicas</option>
+                    <option value="apositos">Apositos y gasas</option>
+                    <option value="barbijos">Barbijos y cofias</option>
+                    <option value="sondas">Sondas</option>
+                    <option value="quirurgicos">Descartables quirurgicos</option>
+                    <option value="cintas">Cintas adhesivas</option>
+                    <option value="venoclisis">Equipos de venoclisis</option>
+                </select>
+                <select class="filter-select" id="filterMarca" aria-label="Filtrar por marca">
+                    <option value="">Todas las marcas</option>
+                    <option value="KEY">KEY</option>
+                    <option value="MEDISUL">MEDISUL</option>
+                    <option value="HAND">HAND</option>
+                    <option value="PIO PIO">PIO PIO</option>
+                    <option value="PROVEIN">PROVEIN</option>
+                    <option value="MEIYI">MEIYI</option>
+                    <option value="DEXAL">DEXAL</option>
+                    <option value="HIPOALERGIC">HIPOALERGIC</option>
+                    <option value="INSUMOS XXI">INSUMOS XXI</option>
+                    <option value="DALIA">DALIA</option>
+                    <option value="PRINTEX">PRINTEX</option>
+                    <option value="K-KAUTION">K-KAUTION</option>
+                    <option value="RUSCH">RUSCH</option>
+                    <option value="ANADELIA">ANADELIA</option>
+                    <option value="NEOJET">NEOJET</option>
+                    <option value="FLAVIA">FLAVIA</option>
+                    <option value="AS">AS</option>
+                    <option value="SAIL">SAIL</option>
+                </select>
+                <div class="filters-count" id="filtersCount">
+                    Mostrando <strong id="countNumber">10</strong> productos
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         PRODUCT GRID
+         ========================================== -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-grid" id="productsGrid">
+
+                <!-- 1. Guantes -->
+                <div class="product-card anim" data-rubro="guantes" data-marcas="KEY,MEDISUL,HAND,PIO PIO">
+                    <div class="product-card-image">
+                        <div class="product-card-rubro">Guantes</div>
+                        <div class="product-card-icon">
+                            <i class="fas fa-hand"></i>
+                        </div>
+                    </div>
+                    <div class="product-card-body">
+                        <h3 class="product-card-title">Guantes</h3>
+                        <div class="product-card-brands">
+                            Marcas: <strong>KEY</strong>, <strong>MEDISUL</strong>, <strong>HAND</strong>, <strong>PIO PIO</strong>
+                        </div>
+                        <p class="product-card-details">Guantes de examinacion en latex y nitrilo. Disponibles en multiples talles. Ideales para uso clinico y hospitalario.</p>
+                        <div class="product-card-tags">
+                            <span class="product-tag product-tag--exclusive">KEY</span>
+                            <span class="product-tag">MEDISUL</span>
+                            <span class="product-tag">HAND</span>
+                            <span class="product-tag">PIO PIO</span>
+                        </div>
+                    </div>
+                    <div class="product-card-footer">
+                        <button class="btn-presupuesto" data-product="Guantes (KEY, MEDISUL, HAND, PIO PIO)">
+                            <i class="fas fa-plus"></i>
+                            Agregar al presupuesto
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Cateteres I.V. -->
+                <div class="product-card anim" data-rubro="cateteres" data-marcas="PROVEIN">
+                    <div class="product-card-image">
+                        <div class="product-card-rubro">Cateteres I.V.</div>
+                        <div class="product-card-icon">
+                            <i class="fas fa-syringe"></i>
+                        </div>
+                    </div>
+                    <div class="product-card-body">
+                        <h3 class="product-card-title">Cateteres I.V.</h3>
+                        <div class="product-card-brands">
+                            Marca: <strong>PROVEIN</strong> (Distribucion exclusiva)
+                        </div>
+                        <p class="product-card-details">Cateteres intravenosos perifericos con aguja de seguridad. Disponibles en calibres 18G, 20G, 22G y 24G. Alta calidad y precision.</p>
+                        <div class="product-card-tags">
+                            <span class="product-tag product-tag--exclusive">PROVEIN</span>
+                            <span class="product-tag">18G</span>
+                            <span class="product-tag">20G</span>
+                            <span class="product-tag">22G</span>
+                            <span class="product-tag">24G</span>
+                        </div>
+                    </div>
+                    <div class="product-card-footer">
+                        <button class="btn-presupuesto" data-product="Cateteres I.V. PROVEIN (18G, 20G, 22G, 24G)">
+                            <i class="fas fa-plus"></i>
+                            Agregar al presupuesto
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. Jeringas descartables -->
+                <div class="product-card anim" data-rubro="jeringas" data-marcas="MEIYI,DEXAL">
+                    <div class="product-card-image">
+                        <div class="product-card-rubro">Jeringas</div>
+                        <div class="product-card-icon">
+                            <i class="fas fa-syringe"></i>
+                        </div>
+                    </div>
+                    <div class="product-card-body">
+                        <h3 class="product-card-title">Jeringas descartables</h3>
+                        <div class="product-card-brands">
+                            Marcas: <strong>MEIYI</strong>, <strong>DEXAL</strong>
+                        </div>
+                        <p class="product-card-details">Jeringas descartables de distintas capacidades con y sin aguja. Embalaje esteril individual. Multiples volumenes disponibles.</p>
+                        <div class="product-card-tags">
+                            <span class="product-tag">MEIYI</span>
+                            <span class="product-tag">DEXAL</span>
+                        </div>
+                    </div>
+                    <div class="product-card-footer">
+                        <button class="btn-presupuesto" data-product="Jeringas descartables (MEIYI, DEXAL)">
+                            <i class="fas fa-plus"></i>
+                            Agregar al presupuesto
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 4. Agujas hipodermicas -->
+                <div class="product-card anim" data-rubro="agujas" data-marcas="MEIYI">
+                    <div class="product-card-image">
+                        <div class="product-card-rubro">Agujas</div>
+                        <div class="product-card-icon">
+                            <i class="fas fa-prescription"></i>
+                        </div>
+                    </div>
+                    <div class="product-card-body">
+                        <h3 class="product-card-title">Agujas hipodermicas</h3>
+                        <div class="product-card-brands">
+                            Marca: <strong>MEIYI</strong>
+                        </div>
+                        <p class="product-card-details">Agujas hipodermicas descartables de acero inoxidable. Multiples calibres y longitudes. Biselado de precision para mayor confort del paciente.</p>
+                        <div class="product-card-tags">
+                            <span class="product-tag">MEIYI</span>
+                        </div>
+                    </div>
+                    <div class="product-card-footer">
+                        <button class="btn-presupuesto" data-product="Agujas hipodermicas (MEIYI)">
+                            <i class="fas fa-plus"></i>
+                            Agregar al presupuesto
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 5. Apositos y gasas -->
+                <div class="product-card anim" data-rubro="apositos" data-marcas="HIPOALERGIC,INSUMOS XXI,DALIA">
+                    <div class="product-card-image">
+                        <div class="product-card-rubro">Apositos</div>
+                        <div class="product-card-icon">
+                            <i class="fas fa-bandage"></i>
+                        </div>
+                    </div>
+                    <div class="product-card-body">
+                        <h3 class="product-card-title">Apositos y gasas</h3>
+                        <div class="product-card-brands">
+                            Marcas: <strong>HIPOALERGIC</strong>, <strong>INSUMOS XXI</strong>, <strong>DALIA</strong>
+                        </div>
+                        <p class="product-card-details">Apositos esteriles, gasas tejidas y no tejidas, compresas quirurgicas. Variedad de tamaños y presentaciones para todo tipo de curaciones.</p>
+                        <div class="product-card-tags">
+                            <span class="product-tag">HIPOALERGIC</span>
+                            <span class="product-tag">INSUMOS XXI</span>
+                            <span class="product-tag">DALIA</span>
+                        </div>
+                    </div>
+                    <div class="product-card-footer">
+                        <button class="btn-presupuesto" data-product="Apositos y gasas (HIPOALERGIC, INSUMOS XXI, DALIA)">
+                            <i class="fas fa-plus"></i>
+                            Agregar al presupuesto
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 6. Barbijos y cofias -->
+                <div class="product-card anim" data-rubro="barbijos" data-marcas="PRINTEX,K-KAUTION">
+                    <div class="product-card-image">
+                        <div class="product-card-rubro">Barbijos</div>
+                        <div class="product-card-icon">
+                            <i class="fas fa-head-side-mask"></i>
+                        </div>
+                    </div>
+                    <div class="product-card-body">
+                        <h3 class="product-card-title">Barbijos y cofias</h3>
+                        <div class="product-card-brands">
+                            Marcas: <strong>PRINTEX</strong>, <strong>K-KAUTION</strong>
+                        </div>
+                        <p class="product-card-details">Barbijos quirurgicos de tres pliegues, cofias descartables y gorros quirurgicos. Proteccion confiable para personal de salud.</p>
+                        <div class="product-card-tags">
+                            <span class="product-tag">PRINTEX</span>
+                            <span class="product-tag">K-KAUTION</span>
+                        </div>
+                    </div>
+                    <div class="product-card-footer">
+                        <button class="btn-presupuesto" data-product="Barbijos y cofias (PRINTEX, K-KAUTION)">
+                            <i class="fas fa-plus"></i>
+                            Agregar al presupuesto
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 7. Sondas -->
+                <div class="product-card anim" data-rubro="sondas" data-marcas="RUSCH,ANADELIA">
+                    <div class="product-card-image">
+                        <div class="product-card-rubro">Sondas</div>
+                        <div class="product-card-icon">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                    </div>
+                    <div class="product-card-body">
+                        <h3 class="product-card-title">Sondas</h3>
+                        <div class="product-card-brands">
+                            Marcas: <strong>RUSCH</strong>, <strong>ANADELIA</strong>
+                        </div>
+                        <p class="product-card-details">Sondas vesicales, nasogastricas y de aspiracion. Materiales biocompatibles, multiples calibres French. Esterilizacion garantizada.</p>
+                        <div class="product-card-tags">
+                            <span class="product-tag">RUSCH</span>
+                            <span class="product-tag">ANADELIA</span>
+                        </div>
+                    </div>
+                    <div class="product-card-footer">
+                        <button class="btn-presupuesto" data-product="Sondas (RUSCH, ANADELIA)">
+                            <i class="fas fa-plus"></i>
+                            Agregar al presupuesto
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 8. Descartables quirurgicos -->
+                <div class="product-card anim" data-rubro="quirurgicos" data-marcas="NEOJET,FLAVIA">
+                    <div class="product-card-image">
+                        <div class="product-card-rubro">Quirurgicos</div>
+                        <div class="product-card-icon">
+                            <i class="fas fa-kit-medical"></i>
+                        </div>
+                    </div>
+                    <div class="product-card-body">
+                        <h3 class="product-card-title">Descartables quirurgicos</h3>
+                        <div class="product-card-brands">
+                            Marcas: <strong>NEOJET</strong>, <strong>FLAVIA</strong>
+                        </div>
+                        <p class="product-card-details">Campos quirurgicos, camisolines, sabanas descartables y kits quirurgicos completos. Material SMS de alta barrera de proteccion.</p>
+                        <div class="product-card-tags">
+                            <span class="product-tag">NEOJET</span>
+                            <span class="product-tag">FLAVIA</span>
+                        </div>
+                    </div>
+                    <div class="product-card-footer">
+                        <button class="btn-presupuesto" data-product="Descartables quirurgicos (NEOJET, FLAVIA)">
+                            <i class="fas fa-plus"></i>
+                            Agregar al presupuesto
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 9. Cintas adhesivas -->
+                <div class="product-card anim" data-rubro="cintas" data-marcas="HIPOALERGIC,AS">
+                    <div class="product-card-image">
+                        <div class="product-card-rubro">Cintas</div>
+                        <div class="product-card-icon">
+                            <i class="fas fa-tape"></i>
+                        </div>
+                    </div>
+                    <div class="product-card-body">
+                        <h3 class="product-card-title">Cintas adhesivas</h3>
+                        <div class="product-card-brands">
+                            Marcas: <strong>HIPOALERGIC</strong>, <strong>AS</strong>
+                        </div>
+                        <p class="product-card-details">Cintas adhesivas hipoalergenicas, microporosas y de tela. Ideales para fijacion de apositos y cateteres. Multiples anchos disponibles.</p>
+                        <div class="product-card-tags">
+                            <span class="product-tag">HIPOALERGIC</span>
+                            <span class="product-tag">AS</span>
+                        </div>
+                    </div>
+                    <div class="product-card-footer">
+                        <button class="btn-presupuesto" data-product="Cintas adhesivas (HIPOALERGIC, AS)">
+                            <i class="fas fa-plus"></i>
+                            Agregar al presupuesto
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 10. Equipos de venoclisis -->
+                <div class="product-card anim" data-rubro="venoclisis" data-marcas="SAIL,PROVEIN">
+                    <div class="product-card-image">
+                        <div class="product-card-rubro">Venoclisis</div>
+                        <div class="product-card-icon">
+                            <i class="fas fa-droplet"></i>
+                        </div>
+                    </div>
+                    <div class="product-card-body">
+                        <h3 class="product-card-title">Equipos de venoclisis</h3>
+                        <div class="product-card-brands">
+                            Marcas: <strong>SAIL</strong>, <strong>PROVEIN</strong>
+                        </div>
+                        <p class="product-card-details">Equipos de infusion para suero y macrogoteros. Conexiones Luer Lock y Luer Slip. Filtro de aire y camara de goteo transparente.</p>
+                        <div class="product-card-tags">
+                            <span class="product-tag">SAIL</span>
+                            <span class="product-tag product-tag--exclusive">PROVEIN</span>
+                        </div>
+                    </div>
+                    <div class="product-card-footer">
+                        <button class="btn-presupuesto" data-product="Equipos de venoclisis (SAIL, PROVEIN)">
+                            <i class="fas fa-plus"></i>
+                            Agregar al presupuesto
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- No results message -->
+            <div class="no-results" id="noResults">
+                <div class="no-results-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Sin resultados</h3>
+                <p>No se encontraron productos con los filtros seleccionados. Probá ajustando los criterios de busqueda.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         CTA SECTION
+         ========================================== -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-inner anim">
+                <div class="cta-content">
+                    <div class="section-overline">Solicita tu presupuesto</div>
+                    <h2>No encontras lo que buscas? <em>Consultanos</em></h2>
+                    <p>Nuestro catalogo se actualiza constantemente. Si necesitas un producto especifico o queres recibir un presupuesto personalizado, contactanos y te respondemos a la brevedad.</p>
+                    <div class="cta-buttons">
+                        <a href="https://wa.me/5493517352990" target="_blank" class="btn btn-white">
+                            <i class="fab fa-whatsapp"></i>
+                            WhatsApp
+                        </a>
+                        <a href="contacto.html" class="btn btn-outline-white">
+                            <i class="fas fa-envelope"></i>
+                            Contacto
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <div class="brand-icon">M</div>
+                    <div>
+                        <div class="footer-brand-text">Mercomed</div>
+                        <div class="footer-copy">&copy; 2026 Mercomed S.A. Todos los derechos reservados.</div>
+                    </div>
+                </div>
+                <nav class="footer-nav">
+                    <a href="index.html">Inicio</a>
+                    <a href="productos.html">Productos</a>
+                    <a href="contacto.html">Contacto</a>
+                </nav>
+                <div class="footer-badges">
+                    <div class="footer-badge">
+                        <i class="fas fa-shield-halved"></i>
+                        ANMAT
+                    </div>
+                    <div class="footer-badge">
+                        <i class="fas fa-building-columns"></i>
+                        AFIP
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         TOAST NOTIFICATION
+         ========================================== -->
+    <div class="toast" id="toast">
+        <div class="toast-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        <span id="toastMessage">Producto agregado al presupuesto</span>
+    </div>
+
+    <!-- ==========================================
+         JAVASCRIPT
+         ========================================== -->
+    <script>
+    (function() {
+        'use strict';
+
+        /* -----------------------------------------
+           NAVBAR: Scroll shadow
+           ----------------------------------------- */
+        var navbar = document.getElementById('navbar');
+
+        function handleNavbarScroll() {
+            if (window.scrollY > 10) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+
+        window.addEventListener('scroll', handleNavbarScroll, { passive: true });
+        handleNavbarScroll();
+
+        /* -----------------------------------------
+           MOBILE MENU: Toggle
+           ----------------------------------------- */
+        var navbarToggle = document.getElementById('navbarToggle');
+        var navbarMobile = document.getElementById('navbarMobile');
+
+        navbarToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navbarMobile.classList.toggle('open');
+        });
+
+        navbarMobile.querySelectorAll('.nav-link').forEach(function(link) {
+            link.addEventListener('click', function() {
+                navbarToggle.classList.remove('active');
+                navbarMobile.classList.remove('open');
+            });
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!navbarToggle.contains(e.target) && !navbarMobile.contains(e.target)) {
+                navbarToggle.classList.remove('active');
+                navbarMobile.classList.remove('open');
+            }
+        });
+
+        /* -----------------------------------------
+           PRESUPUESTO: localStorage management
+           ----------------------------------------- */
+        function getPresupuestoCount() {
+            try {
+                var raw = localStorage.getItem('mercomed_presupuesto_count');
+                if (raw !== null) {
+                    var count = parseInt(raw, 10);
+                    return isNaN(count) ? 0 : count;
+                }
+            } catch (e) {}
+            return 0;
+        }
+
+        function setPresupuestoCount(count) {
+            try {
+                localStorage.setItem('mercomed_presupuesto_count', count.toString());
+            } catch (e) {}
+        }
+
+        function updatePresupuestoBadge() {
+            var count = getPresupuestoCount();
+
+            var navItem = document.getElementById('navPresupuesto');
+            var navBadge = document.getElementById('navPresupuestoBadge');
+            var navItemMobile = document.getElementById('navPresupuestoMobile');
+            var navBadgeMobile = document.getElementById('navPresupuestoBadgeMobile');
+
+            if (count > 0) {
+                if (navItem) {
+                    navItem.style.display = '';
+                    navBadge.textContent = count;
+                }
+                if (navItemMobile) {
+                    navItemMobile.style.display = '';
+                    navBadgeMobile.textContent = count;
+                }
+            } else {
+                if (navItem) navItem.style.display = 'none';
+                if (navItemMobile) navItemMobile.style.display = 'none';
+            }
+        }
+
+        updatePresupuestoBadge();
+
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'mercomed_presupuesto_count') {
+                updatePresupuestoBadge();
+            }
+        });
+
+        /* -----------------------------------------
+           TOAST: Show notification
+           ----------------------------------------- */
+        var toastEl = document.getElementById('toast');
+        var toastMsg = document.getElementById('toastMessage');
+        var toastTimer = null;
+
+        function showToast(message) {
+            toastMsg.textContent = message;
+            toastEl.classList.add('show');
+
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(function() {
+                toastEl.classList.remove('show');
+            }, 2500);
+        }
+
+        /* -----------------------------------------
+           ADD TO PRESUPUESTO: Button handlers
+           ----------------------------------------- */
+        var presupuestoButtons = document.querySelectorAll('.btn-presupuesto');
+
+        presupuestoButtons.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var productName = this.getAttribute('data-product');
+                var currentCount = getPresupuestoCount();
+                currentCount++;
+                setPresupuestoCount(currentCount);
+                updatePresupuestoBadge();
+
+                // Visual feedback
+                this.classList.add('added');
+                this.innerHTML = '<i class="fas fa-check"></i> Agregado';
+
+                showToast(productName + ' agregado al presupuesto');
+
+                // Reset button after delay
+                var self = this;
+                setTimeout(function() {
+                    self.classList.remove('added');
+                    self.innerHTML = '<i class="fas fa-plus"></i> Agregar al presupuesto';
+                }, 2000);
+            });
+        });
+
+        /* -----------------------------------------
+           FILTERS: Rubro & Marca
+           ----------------------------------------- */
+        var filterRubro = document.getElementById('filterRubro');
+        var filterMarca = document.getElementById('filterMarca');
+        var productsGrid = document.getElementById('productsGrid');
+        var countNumber = document.getElementById('countNumber');
+        var noResults = document.getElementById('noResults');
+        var allCards = productsGrid.querySelectorAll('.product-card');
+
+        function applyFilters() {
+            var selectedRubro = filterRubro.value;
+            var selectedMarca = filterMarca.value;
+            var visibleCount = 0;
+
+            allCards.forEach(function(card) {
+                var cardRubro = card.getAttribute('data-rubro');
+                var cardMarcas = card.getAttribute('data-marcas');
+                var rubroMatch = !selectedRubro || cardRubro === selectedRubro;
+                var marcaMatch = !selectedMarca || cardMarcas.indexOf(selectedMarca) !== -1;
+
+                if (rubroMatch && marcaMatch) {
+                    card.style.display = '';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            countNumber.textContent = visibleCount;
+
+            if (visibleCount === 0) {
+                noResults.classList.add('show');
+            } else {
+                noResults.classList.remove('show');
+            }
+        }
+
+        filterRubro.addEventListener('change', applyFilters);
+        filterMarca.addEventListener('change', applyFilters);
+
+        /* -----------------------------------------
+           SCROLL ANIMATIONS: IntersectionObserver
+           ----------------------------------------- */
+        var animElements = document.querySelectorAll('.anim');
+
+        if ('IntersectionObserver' in window) {
+            var animObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        animObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.12,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            animElements.forEach(function(el) {
+                animObserver.observe(el);
+            });
+        } else {
+            animElements.forEach(function(el) {
+                el.classList.add('visible');
+            });
+        }
+
+    })();
+    </script>
+
+</body>
+</html>

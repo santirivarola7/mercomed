@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercomed S.A. — Excelencia en Insumos Médicos</title>
+    <meta name="description" content="Mercomed S.A. — Productos médico hospitalarios de excelencia. Más de 20 años siendo socios estratégicos del sector salud en Argentina.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ========================================
+           CSS CUSTOM PROPERTIES
+           ======================================== */
+        :root {
+            --green: #0E6E45;
+            --green-dark: #094e31;
+            --green-light: #e8f5ee;
+            --orange: #EC5403;
+            --dark: #0f1923;
+            --dark-card: #162230;
+            --dark-blue: #1a2d42;
+            --white: #ffffff;
+            --gray-100: #f5f7f9;
+            --gray-200: #e8ecf0;
+            --gray-300: #d1d8e0;
+            --gray-500: #8a95a3;
+            --gray-700: #4a5568;
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.12);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.15);
+            --shadow-glow-green: 0 8px 32px rgba(14,110,69,0.35);
+        }
+
+        /* ========================================
+           RESET & BASE
+           ======================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--gray-700);
+            line-height: 1.7;
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul { list-style: none; }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========================================
+           NAVIGATION
+           ======================================== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.4s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(15, 25, 35, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            padding: 14px 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            z-index: 1001;
+        }
+
+        .nav-brand-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--orange);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 8px 18px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--white);
+        }
+
+        .nav-links .nav-cta {
+            background: var(--orange);
+            color: var(--white);
+            border-radius: 50px;
+            padding: 10px 24px;
+            font-weight: 600;
+        }
+
+        .nav-links .nav-cta:hover {
+            background: #d94a03;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(236, 84, 3, 0.4);
+        }
+
+        .nav-budget-link {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-budget-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 18px;
+            height: 18px;
+            background: var(--orange);
+            color: var(--white);
+            font-size: 0.65rem;
+            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        /* Hamburger */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 4px;
+        }
+
+        .nav-hamburger span {
+            width: 26px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .nav-hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile overlay */
+        .nav-mobile-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 25, 35, 0.97);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .nav-mobile-overlay.open {
+            opacity: 1;
+        }
+
+        .nav-mobile-overlay a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 14px 30px;
+            transition: var(--transition);
+        }
+
+        .nav-mobile-overlay a:hover {
+            color: var(--white);
+        }
+
+        .nav-mobile-overlay .nav-cta {
+            background: var(--orange);
+            color: var(--white);
+            border-radius: 50px;
+            margin-top: 10px;
+        }
+
+        /* ========================================
+           HERO
+           ======================================== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(160deg, var(--dark) 0%, #0d2818 40%, var(--green-dark) 100%);
+            overflow: hidden;
+            padding: 120px 24px 80px;
+        }
+
+        /* Floating circles */
+        .hero-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid;
+            opacity: 0.15;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero-circle--1 {
+            width: 500px;
+            height: 500px;
+            border-color: rgba(14, 110, 69, 0.5);
+            top: -100px;
+            right: -150px;
+            animation-delay: 0s;
+        }
+
+        .hero-circle--2 {
+            width: 350px;
+            height: 350px;
+            border-color: rgba(236, 84, 3, 0.4);
+            bottom: -50px;
+            left: -100px;
+            animation-delay: -7s;
+            animation-duration: 25s;
+        }
+
+        .hero-circle--3 {
+            width: 200px;
+            height: 200px;
+            border-color: rgba(14, 110, 69, 0.6);
+            top: 30%;
+            left: 10%;
+            animation-delay: -13s;
+            animation-duration: 18s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(30px, -40px) rotate(5deg);
+            }
+            50% {
+                transform: translate(-20px, 20px) rotate(-3deg);
+            }
+            75% {
+                transform: translate(15px, 35px) rotate(4deg);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .hero-eyebrow span {
+            color: var(--orange);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .hero-eyebrow-line {
+            width: 40px;
+            height: 1px;
+            background: var(--orange);
+            opacity: 0.5;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--orange), #ff7b33);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            color: var(--white);
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-glow-green);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(14, 110, 69, 0.5);
+        }
+
+        .btn-outline-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--white);
+            padding: 15px 32px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border: 1.5px solid rgba(255, 255, 255, 0.35);
+            background: transparent;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-outline-white:hover {
+            border-color: var(--white);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* Scroll indicator */
+        .hero-scroll {
+            position: absolute;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            z-index: 2;
+        }
+
+        .hero-scroll span {
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-scroll-line::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--orange);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollLine {
+            0% { top: -100%; }
+            50% { top: 100%; }
+            100% { top: 100%; }
+        }
+
+        /* ========================================
+           FEATURES SECTION
+           ======================================== */
+        .features {
+            position: relative;
+            background: var(--white);
+            padding: 120px 0 100px;
+            clip-path: polygon(0 40px, 100% 0, 100% 100%, 0 100%);
+            margin-top: -40px;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--green-light);
+            color: var(--green);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+        }
+
+        .section-label i {
+            color: var(--orange);
+            font-size: 0.65rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            color: var(--dark);
+            line-height: 1.3;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 36px 30px;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--green), var(--orange));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+
+        .feature-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .feature-number {
+            font-family: var(--font-heading);
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: var(--gray-200);
+            line-height: 1;
+            margin-bottom: 16px;
+            transition: color 0.4s ease;
+        }
+
+        .feature-card:hover .feature-number {
+            color: var(--green-light);
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 0.92rem;
+            color: var(--gray-500);
+            line-height: 1.7;
+        }
+
+        /* ========================================
+           VALUES BANNER
+           ======================================== */
+        .values {
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .values::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .values-text h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            color: var(--white);
+            line-height: 1.3;
+            margin-bottom: 16px;
+        }
+
+        .values-text > p {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 1rem;
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        .values-checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .values-checklist li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+        }
+
+        .values-checklist li .check-icon {
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
+            background: var(--orange);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+
+        .values-checklist li .check-icon i {
+            font-size: 0.6rem;
+            color: var(--white);
+        }
+
+        .values-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 30px 24px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .stat-card .stat-number {
+            font-family: var(--font-heading);
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .stat-card .stat-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        /* ========================================
+           BRANDS SECTION
+           ======================================== */
+        .brands {
+            background: var(--gray-100);
+            padding: 80px 0;
+            overflow: hidden;
+        }
+
+        .brands .section-header {
+            margin-bottom: 48px;
+        }
+
+        .marquee-wrapper {
+            position: relative;
+            mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+            -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 16px;
+            width: max-content;
+            animation: marquee 30s linear infinite;
+        }
+
+        .marquee-track:nth-child(2) {
+            margin-top: 16px;
+            animation-direction: reverse;
+            animation-duration: 35s;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .brand-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 50px;
+            padding: 10px 22px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            white-space: nowrap;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .brand-chip:hover {
+            border-color: var(--green);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .brand-chip.exclusive {
+            background: var(--green-light);
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        .brand-chip.exclusive .brand-badge {
+            background: var(--green);
+            color: var(--white);
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        /* ========================================
+           CONTACT SECTION
+           ======================================== */
+        .contact {
+            position: relative;
+            background: var(--dark);
+            padding: 120px 0 80px;
+            clip-path: polygon(0 0, 100% 40px, 100% 100%, 0 100%);
+            margin-top: -40px;
+        }
+
+        .contact .section-header h2 {
+            color: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .contact-card {
+            background: var(--dark-card);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 36px 28px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(14, 110, 69, 0.3);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-card-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .contact-card-icon i {
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+
+        .contact-card h3 {
+            font-family: var(--font-heading);
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-card p {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .contact-card a {
+            color: var(--orange);
+            font-weight: 500;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-hours {
+            text-align: center;
+        }
+
+        .contact-hours-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--dark-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            padding: 12px 28px;
+            color: var(--gray-500);
+            font-size: 0.85rem;
+        }
+
+        .contact-hours-pill i {
+            color: var(--orange);
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        .footer {
+            background: var(--dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 60px 0 30px;
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .footer-brand .nav-brand-dot {
+            width: 8px;
+            height: 8px;
+        }
+
+        .footer-brand span {
+            color: var(--gray-500);
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 400;
+            margin-left: 4px;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 28px;
+        }
+
+        .footer-nav a {
+            color: var(--gray-500);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .footer-nav a:hover {
+            color: var(--white);
+        }
+
+        .footer-badges {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 8px 14px;
+            color: var(--gray-500);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .footer-badge i {
+            color: var(--green);
+        }
+
+        .footer-copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 24px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 0.8rem;
+        }
+
+        /* ========================================
+           REVEAL ANIMATION
+           ======================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal.delay-1 { transition-delay: 0.1s; }
+        .reveal.delay-2 { transition-delay: 0.2s; }
+        .reveal.delay-3 { transition-delay: 0.3s; }
+        .reveal.delay-4 { transition-delay: 0.4s; }
+        .reveal.delay-5 { transition-delay: 0.5s; }
+
+        /* ========================================
+           RESPONSIVE: 1024px
+           ======================================== */
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-grid .contact-card:last-child {
+                grid-column: span 2;
+                max-width: 400px;
+                margin: 0 auto;
+                width: 100%;
+            }
+        }
+
+        /* ========================================
+           RESPONSIVE: 768px
+           ======================================== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-hamburger {
+                display: flex;
+            }
+
+            .nav-mobile-overlay {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+                margin: 0 auto;
+            }
+
+            .features {
+                clip-path: polygon(0 20px, 100% 0, 100% 100%, 0 100%);
+                margin-top: -20px;
+                padding: 80px 0 60px;
+            }
+
+            .values {
+                padding: 70px 0;
+            }
+
+            .values-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contact {
+                clip-path: polygon(0 0, 100% 20px, 100% 100%, 0 100%);
+                margin-top: -20px;
+                padding: 80px 0 60px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto 40px;
+            }
+
+            .contact-grid .contact-card:last-child {
+                grid-column: auto;
+                max-width: none;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        /* ========================================
+           RESPONSIVE: 480px
+           ======================================== */
+        @media (max-width: 480px) {
+            .hero {
+                padding: 100px 20px 70px;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-buttons .btn-primary,
+            .hero-buttons .btn-outline-white {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-eyebrow-line {
+                display: none;
+            }
+
+            .stat-card .stat-number {
+                font-size: 1.9rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.6rem;
+            }
+
+            .footer-badges {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========================================
+         NAVIGATION
+         ======================================== -->
+    <nav class="nav" id="mainNav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <span class="nav-brand-dot"></span>
+                Mercomed
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" class="active">Inicio</a>
+                <a href="productos.html">Productos</a>
+                <a href="contacto.html" class="nav-cta">Contacto</a>
+                <a href="presupuesto.html" class="nav-budget-link" id="budgetLink" style="display: none;">
+                    Mi Presupuesto
+                    <span class="nav-budget-badge" id="budgetBadge">0</span>
+                </a>
+            </div>
+            <div class="nav-hamburger" id="navHamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile overlay -->
+    <div class="nav-mobile-overlay" id="mobileOverlay">
+        <a href="index.html" onclick="closeMobileMenu()">Inicio</a>
+        <a href="productos.html" onclick="closeMobileMenu()">Productos</a>
+        <a href="contacto.html" class="nav-cta" onclick="closeMobileMenu()">Contacto</a>
+        <a href="presupuesto.html" id="budgetLinkMobile" style="display: none;" onclick="closeMobileMenu()">
+            Mi Presupuesto (<span id="budgetBadgeMobile">0</span>)
+        </a>
+    </div>
+
+    <!-- ========================================
+         HERO
+         ======================================== -->
+    <section class="hero">
+        <div class="hero-circle hero-circle--1"></div>
+        <div class="hero-circle hero-circle--2"></div>
+        <div class="hero-circle hero-circle--3"></div>
+
+        <div class="hero-content">
+            <div class="hero-eyebrow">
+                <div class="hero-eyebrow-line"></div>
+                <span>Productos Médico Hospitalarios</span>
+                <div class="hero-eyebrow-line"></div>
+            </div>
+            <h1>Excelencia en <span class="highlight">insumos médicos</span> para su empresa</h1>
+            <p class="hero-subtitle">Con más de dos décadas de trayectoria, proveemos a instituciones de salud con los más altos estándares de calidad, respaldo técnico y compromiso profesional.</p>
+            <div class="hero-buttons">
+                <a href="productos.html" class="btn-primary">
+                    Descubrir más
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="https://wa.me/5491100000000" class="btn-outline-white" target="_blank" rel="noopener">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-scroll">
+            <span>scroll</span>
+            <div class="hero-scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         FEATURES
+         ======================================== -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">
+                    <i class="fas fa-diamond"></i>
+                    Lo que nos distingue
+                </div>
+                <h2>Nuestra propuesta est&aacute; basada en...</h2>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card reveal delay-1">
+                    <div class="feature-number">01</div>
+                    <h3>Calidad certificada</h3>
+                    <p>Trabajamos exclusivamente con productos aprobados por ANMAT, garantizando los más altos estándares de calidad y seguridad para cada institución.</p>
+                </div>
+                <div class="feature-card reveal delay-2">
+                    <div class="feature-number">02</div>
+                    <h3>Asesoramiento técnico</h3>
+                    <p>Nuestro equipo de profesionales brinda soporte especializado para que cada decisión de compra sea informada y estratégica.</p>
+                </div>
+                <div class="feature-card reveal delay-3">
+                    <div class="feature-number">03</div>
+                    <h3>Logística eficiente</h3>
+                    <p>Sistema de distribución propio que asegura entregas puntuales y en condiciones óptimas a todo el territorio nacional.</p>
+                </div>
+                <div class="feature-card reveal delay-4">
+                    <div class="feature-number">04</div>
+                    <h3>Stock permanente</h3>
+                    <p>Mantenemos un inventario amplio y diversificado para responder a las necesidades de abastecimiento de forma inmediata.</p>
+                </div>
+                <div class="feature-card reveal delay-5">
+                    <div class="feature-number">05</div>
+                    <h3>Precios competitivos</h3>
+                    <p>Relación directa con fabricantes y representaciones exclusivas que nos permiten ofrecer la mejor ecuación costo-beneficio.</p>
+                </div>
+                <div class="feature-card reveal delay-5">
+                    <div class="feature-number">06</div>
+                    <h3>Atención personalizada</h3>
+                    <p>Cada cliente cuenta con un ejecutivo de cuenta dedicado que acompaña el proceso comercial de principio a fin.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         VALUES BANNER
+         ======================================== -->
+    <section class="values">
+        <div class="container">
+            <div class="values-grid">
+                <div class="values-text reveal">
+                    <h2>Más que proveedores, socios estratégicos</h2>
+                    <p>Construimos relaciones a largo plazo basadas en la confianza, la transparencia y el compromiso con la excelencia en salud.</p>
+                    <ul class="values-checklist">
+                        <li>
+                            <span class="check-icon"><i class="fas fa-check"></i></span>
+                            Representantes exclusivos de marcas líderes internacionales
+                        </li>
+                        <li>
+                            <span class="check-icon"><i class="fas fa-check"></i></span>
+                            Capacitación continua al personal de las instituciones
+                        </li>
+                        <li>
+                            <span class="check-icon"><i class="fas fa-check"></i></span>
+                            Seguimiento post-venta y soporte técnico permanente
+                        </li>
+                        <li>
+                            <span class="check-icon"><i class="fas fa-check"></i></span>
+                            Adaptación a las necesidades específicas de cada cliente
+                        </li>
+                    </ul>
+                </div>
+                <div class="values-stats reveal delay-2">
+                    <div class="stat-card">
+                        <div class="stat-number">20+</div>
+                        <div class="stat-label">Años de experiencia</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Productos certificados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24hs</div>
+                        <div class="stat-label">Respuesta garantizada</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">ANMAT</div>
+                        <div class="stat-label">Habilitación vigente</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         BRANDS
+         ======================================== -->
+    <section class="brands">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">
+                    <i class="fas fa-diamond"></i>
+                    Marcas que representamos
+                </div>
+                <h2>Trabajamos con los líderes del sector</h2>
+            </div>
+        </div>
+
+        <div class="marquee-wrapper">
+            <!-- Track 1 -->
+            <div class="marquee-track" id="marqueeTrack1">
+                <div class="brand-chip exclusive">Provein <span class="brand-badge">Exclusivo</span></div>
+                <div class="brand-chip">3M Healthcare</div>
+                <div class="brand-chip">B. Braun</div>
+                <div class="brand-chip exclusive">Key <span class="brand-badge">Exclusivo</span></div>
+                <div class="brand-chip">Medline</div>
+                <div class="brand-chip">Covidien</div>
+                <div class="brand-chip">Cardinal Health</div>
+                <div class="brand-chip">Becton Dickinson</div>
+                <div class="brand-chip">Baxter</div>
+                <div class="brand-chip">Smiths Medical</div>
+                <div class="brand-chip">Teleflex</div>
+                <div class="brand-chip">Cook Medical</div>
+                <!-- Duplicate for seamless loop -->
+                <div class="brand-chip exclusive">Provein <span class="brand-badge">Exclusivo</span></div>
+                <div class="brand-chip">3M Healthcare</div>
+                <div class="brand-chip">B. Braun</div>
+                <div class="brand-chip exclusive">Key <span class="brand-badge">Exclusivo</span></div>
+                <div class="brand-chip">Medline</div>
+                <div class="brand-chip">Covidien</div>
+                <div class="brand-chip">Cardinal Health</div>
+                <div class="brand-chip">Becton Dickinson</div>
+                <div class="brand-chip">Baxter</div>
+                <div class="brand-chip">Smiths Medical</div>
+                <div class="brand-chip">Teleflex</div>
+                <div class="brand-chip">Cook Medical</div>
+            </div>
+
+            <!-- Track 2 -->
+            <div class="marquee-track" id="marqueeTrack2">
+                <div class="brand-chip">Mölnlycke</div>
+                <div class="brand-chip">Coloplast</div>
+                <div class="brand-chip">ConvaTec</div>
+                <div class="brand-chip">Halyard Health</div>
+                <div class="brand-chip exclusive">Provein <span class="brand-badge">Exclusivo</span></div>
+                <div class="brand-chip">Stryker</div>
+                <div class="brand-chip">Medtronic</div>
+                <div class="brand-chip exclusive">Key <span class="brand-badge">Exclusivo</span></div>
+                <div class="brand-chip">ICU Medical</div>
+                <div class="brand-chip">Boston Scientific</div>
+                <div class="brand-chip">Edwards Lifesciences</div>
+                <div class="brand-chip">Ansell</div>
+                <!-- Duplicate for seamless loop -->
+                <div class="brand-chip">Mölnlycke</div>
+                <div class="brand-chip">Coloplast</div>
+                <div class="brand-chip">ConvaTec</div>
+                <div class="brand-chip">Halyard Health</div>
+                <div class="brand-chip exclusive">Provein <span class="brand-badge">Exclusivo</span></div>
+                <div class="brand-chip">Stryker</div>
+                <div class="brand-chip">Medtronic</div>
+                <div class="brand-chip exclusive">Key <span class="brand-badge">Exclusivo</span></div>
+                <div class="brand-chip">ICU Medical</div>
+                <div class="brand-chip">Boston Scientific</div>
+                <div class="brand-chip">Edwards Lifesciences</div>
+                <div class="brand-chip">Ansell</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         CONTACT SECTION
+         ======================================== -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">
+                    <i class="fas fa-diamond"></i>
+                    Comuníquese con nosotros
+                </div>
+                <h2>Estamos para ayudarlo</h2>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-card reveal delay-1">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h3>Teléfono</h3>
+                    <p>Llámenos para consultas comerciales o soporte técnico.</p>
+                    <p style="margin-top: 12px;"><a href="tel:+541100000000">(011) 0000-0000</a></p>
+                </div>
+                <div class="contact-card reveal delay-2">
+                    <div class="contact-card-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p>Escríbanos para una respuesta rápida y directa.</p>
+                    <p style="margin-top: 12px;"><a href="https://wa.me/5491100000000" target="_blank" rel="noopener">+54 9 11 0000-0000</a></p>
+                </div>
+                <div class="contact-card reveal delay-3">
+                    <div class="contact-card-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p>Envíenos su consulta y le responderemos a la brevedad.</p>
+                    <p style="margin-top: 12px;"><a href="mailto:info@mercomed.com.ar">info@mercomed.com.ar</a></p>
+                </div>
+            </div>
+
+            <div class="contact-hours reveal">
+                <div class="contact-hours-pill">
+                    <i class="fas fa-clock"></i>
+                    Lunes a Viernes de 8:00 a 17:00 hs — Atención comercial
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================
+         FOOTER
+         ======================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <span class="nav-brand-dot"></span>
+                    Mercomed <span>S.A.</span>
+                </div>
+                <nav class="footer-nav">
+                    <a href="index.html">Inicio</a>
+                    <a href="productos.html">Productos</a>
+                    <a href="contacto.html">Contacto</a>
+                </nav>
+                <div class="footer-badges">
+                    <div class="footer-badge">
+                        <i class="fas fa-shield-halved"></i>
+                        ANMAT Habilitado
+                    </div>
+                    <div class="footer-badge">
+                        <i class="fas fa-file-certificate"></i>
+                        AFIP Certificado
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2026 Mercomed S.A. Todos los derechos reservados. Productos médico hospitalarios.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================
+         JAVASCRIPT
+         ======================================== -->
+    <script>
+        (function () {
+            'use strict';
+
+            /* ----------------------------------------
+               NAVIGATION: Scroll effect
+               ---------------------------------------- */
+            const nav = document.getElementById('mainNav');
+            let lastScroll = 0;
+
+            function handleNavScroll() {
+                const scrollY = window.scrollY;
+                if (scrollY > 60) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+                lastScroll = scrollY;
+            }
+
+            window.addEventListener('scroll', handleNavScroll, { passive: true });
+            handleNavScroll();
+
+            /* ----------------------------------------
+               NAVIGATION: Mobile menu
+               ---------------------------------------- */
+            const hamburger = document.getElementById('navHamburger');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+
+            hamburger.addEventListener('click', function () {
+                this.classList.toggle('open');
+                mobileOverlay.classList.toggle('open');
+                document.body.style.overflow = mobileOverlay.classList.contains('open') ? 'hidden' : '';
+            });
+
+            window.closeMobileMenu = function () {
+                hamburger.classList.remove('open');
+                mobileOverlay.classList.remove('open');
+                document.body.style.overflow = '';
+            };
+
+            /* ----------------------------------------
+               BUDGET BADGE (localStorage)
+               ---------------------------------------- */
+            function updateBudgetBadge() {
+                var count = 0;
+                try {
+                    var raw = localStorage.getItem('mercomed_presupuesto_count');
+                    if (raw !== null) {
+                        count = parseInt(raw, 10);
+                        if (isNaN(count)) count = 0;
+                    }
+                } catch (e) {
+                    // localStorage unavailable
+                }
+
+                var budgetLink = document.getElementById('budgetLink');
+                var budgetBadge = document.getElementById('budgetBadge');
+                var budgetLinkMobile = document.getElementById('budgetLinkMobile');
+                var budgetBadgeMobile = document.getElementById('budgetBadgeMobile');
+
+                if (count > 0) {
+                    if (budgetLink) {
+                        budgetLink.style.display = '';
+                        budgetBadge.textContent = count;
+                    }
+                    if (budgetLinkMobile) {
+                        budgetLinkMobile.style.display = '';
+                        budgetBadgeMobile.textContent = count;
+                    }
+                } else {
+                    if (budgetLink) budgetLink.style.display = 'none';
+                    if (budgetLinkMobile) budgetLinkMobile.style.display = 'none';
+                }
+            }
+
+            updateBudgetBadge();
+
+            // Listen for storage changes from other tabs
+            window.addEventListener('storage', function (e) {
+                if (e.key === 'mercomed_presupuesto_count') {
+                    updateBudgetBadge();
+                }
+            });
+
+            /* ----------------------------------------
+               REVEAL ON SCROLL (IntersectionObserver)
+               ---------------------------------------- */
+            var revealElements = document.querySelectorAll('.reveal');
+
+            if ('IntersectionObserver' in window) {
+                var revealObserver = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('revealed');
+                            revealObserver.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.15,
+                    rootMargin: '0px 0px -40px 0px'
+                });
+
+                revealElements.forEach(function (el) {
+                    revealObserver.observe(el);
+                });
+            } else {
+                // Fallback: reveal all immediately
+                revealElements.forEach(function (el) {
+                    el.classList.add('revealed');
+                });
+            }
+
+            /* ----------------------------------------
+               MARQUEE: Pause on hover
+               ---------------------------------------- */
+            var marqueeWrapper = document.querySelector('.marquee-wrapper');
+            if (marqueeWrapper) {
+                marqueeWrapper.addEventListener('mouseenter', function () {
+                    var tracks = marqueeWrapper.querySelectorAll('.marquee-track');
+                    tracks.forEach(function (t) {
+                        t.style.animationPlayState = 'paused';
+                    });
+                });
+                marqueeWrapper.addEventListener('mouseleave', function () {
+                    var tracks = marqueeWrapper.querySelectorAll('.marquee-track');
+                    tracks.forEach(function (t) {
+                        t.style.animationPlayState = 'running';
+                    });
+                });
+            }
+
+        })();
+    </script>
+</body>
+</html>

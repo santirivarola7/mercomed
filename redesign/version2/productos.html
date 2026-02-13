@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos — Mercomed S.A.</title>
+    <meta name="description" content="Catálogo completo de insumos médicos descartables. Guantes, catéteres, jeringas, apósitos y más. Mercomed S.A.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ============================================
+           CSS RESET & BASE
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green: #0E6E45;
+            --green-dark: #094e31;
+            --green-light: #e8f5ee;
+            --orange: #EC5403;
+            --orange-hover: #d44a02;
+            --dark-bg: #0f1923;
+            --dark-card: #162230;
+            --dark-blue: #1a2d42;
+            --white: #ffffff;
+            --gray-50: #f8f9fa;
+            --gray-100: #f0f2f5;
+            --gray-200: #e2e6ea;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-600: #6b7280;
+            --gray-800: #1f2937;
+            --font-heading: 'Liebling', 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', sans-serif;
+            --nav-height: 80px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--gray-800);
+            background: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        select {
+            font-family: inherit;
+        }
+
+        /* ============================================
+           NAVBAR
+           ============================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 0 2rem;
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background var(--transition), box-shadow var(--transition), backdrop-filter var(--transition);
+        }
+
+        .navbar.scrolled {
+            background: rgba(15, 25, 35, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.02em;
+            z-index: 1001;
+        }
+
+        .nav-brand .dot {
+            width: 10px;
+            height: 10px;
+            background: var(--orange);
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.75);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: color var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--white);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--orange);
+            border-radius: 1px;
+        }
+
+        .nav-links .btn-contacto {
+            background: var(--orange);
+            color: var(--white) !important;
+            padding: 0.55rem 1.4rem;
+            border-radius: 8px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            transition: background var(--transition), transform var(--transition);
+        }
+
+        .nav-links .btn-contacto:hover {
+            background: var(--orange-hover);
+            transform: translateY(-1px);
+        }
+
+        .nav-links .btn-contacto::after {
+            display: none !important;
+        }
+
+        .nav-presupuesto {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .nav-presupuesto .badge {
+            position: absolute;
+            top: -8px;
+            right: -14px;
+            background: var(--orange);
+            color: var(--white);
+            font-size: 0.65rem;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            opacity: 0;
+            transform: scale(0);
+            transition: opacity var(--transition), transform var(--transition);
+        }
+
+        .nav-presupuesto .badge.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Hamburger */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            padding: 4px;
+            z-index: 1001;
+        }
+
+        .nav-hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: transform var(--transition), opacity var(--transition);
+        }
+
+        .nav-hamburger.open span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .nav-hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-hamburger.open span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 25, 35, 0.98);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .mobile-menu.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-menu a {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+            transition: color var(--transition);
+        }
+
+        .mobile-menu a:hover,
+        .mobile-menu a.active {
+            color: var(--orange);
+        }
+
+        .mobile-menu .mobile-presupuesto {
+            position: relative;
+        }
+
+        .mobile-menu .mobile-presupuesto .badge-mobile {
+            position: absolute;
+            top: -4px;
+            right: -20px;
+            background: var(--orange);
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 700;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0);
+            transition: opacity var(--transition), transform var(--transition);
+        }
+
+        .mobile-menu .mobile-presupuesto .badge-mobile.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ============================================
+           PAGE HEADER
+           ============================================ */
+        .page-header {
+            position: relative;
+            background: linear-gradient(160deg, var(--dark-bg) 0%, var(--dark-blue) 50%, var(--dark-card) 100%);
+            padding: calc(var(--nav-height) + 3rem) 2rem 4rem;
+            text-align: center;
+            overflow: hidden;
+            min-height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(14, 110, 69, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(236, 84, 3, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* Decorative floating circles */
+        .header-circle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.07;
+        }
+
+        .header-circle-1 {
+            width: 180px;
+            height: 180px;
+            border: 2px solid var(--green);
+            top: 20%;
+            left: 8%;
+            animation: floatSlow 8s ease-in-out infinite;
+        }
+
+        .header-circle-2 {
+            width: 120px;
+            height: 120px;
+            background: var(--orange);
+            top: 15%;
+            right: 12%;
+            animation: floatSlow 10s ease-in-out infinite reverse;
+        }
+
+        .header-circle-3 {
+            width: 80px;
+            height: 80px;
+            border: 2px solid var(--orange);
+            bottom: 20%;
+            left: 20%;
+            animation: floatSlow 7s ease-in-out infinite 1s;
+        }
+
+        .header-circle-4 {
+            width: 60px;
+            height: 60px;
+            background: var(--green);
+            bottom: 25%;
+            right: 22%;
+            animation: floatSlow 9s ease-in-out infinite 2s;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        .page-header h1 .accent {
+            color: var(--orange);
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.55);
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           FILTERS SECTION
+           ============================================ */
+        .filters-section {
+            background: var(--dark-card);
+            padding: 2rem;
+            position: relative;
+            z-index: 5;
+        }
+
+        .filters-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .filters-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .filter-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+        }
+
+        .filter-select {
+            width: 100%;
+            padding: 0.75rem 2.5rem 0.75rem 1rem;
+            background: var(--dark-bg);
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 500;
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+            transition: border-color var(--transition), box-shadow var(--transition);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239ca3af' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(14, 110, 69, 0.2);
+        }
+
+        .filter-select option {
+            background: var(--dark-bg);
+            color: var(--white);
+            padding: 0.5rem;
+        }
+
+        .btn-limpiar {
+            align-self: flex-end;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 1.5px solid var(--orange);
+            color: var(--orange);
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background var(--transition), color var(--transition), transform var(--transition);
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(-10px);
+        }
+
+        .btn-limpiar.visible {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateX(0);
+        }
+
+        .btn-limpiar:hover {
+            background: var(--orange);
+            color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        /* Active Filter Chips */
+        .filter-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .filter-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.35rem 0.8rem;
+            background: var(--orange);
+            color: var(--white);
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 20px;
+            animation: chipIn 0.3s ease;
+        }
+
+        @keyframes chipIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .filter-chip .chip-remove {
+            background: none;
+            color: var(--white);
+            font-size: 0.85rem;
+            padding: 0;
+            line-height: 1;
+            opacity: 0.8;
+            transition: opacity var(--transition);
+        }
+
+        .filter-chip .chip-remove:hover {
+            opacity: 1;
+        }
+
+        /* Product Count */
+        .filter-count {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.45);
+            font-weight: 500;
+        }
+
+        .filter-count span {
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        /* ============================================
+           PRODUCTS GRID SECTION
+           ============================================ */
+        .products-section {
+            background: var(--gray-50);
+            padding: 3rem 2rem 5rem;
+        }
+
+        .products-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        /* No Results */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            color: var(--gray-300);
+            margin-bottom: 1rem;
+        }
+
+        .no-results h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--gray-600);
+            margin-bottom: 0.5rem;
+        }
+
+        .no-results p {
+            color: var(--gray-400);
+            font-size: 0.95rem;
+        }
+
+        /* ============================================
+           PRODUCT CARD
+           ============================================ */
+        .product-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transition: transform var(--transition), box-shadow var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--green), var(--orange));
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .product-card:hover::after {
+            opacity: 1;
+        }
+
+        .product-image {
+            aspect-ratio: 1 / 1;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image i {
+            font-size: 2.5rem;
+            color: var(--gray-300);
+            transition: color var(--transition), transform var(--transition);
+        }
+
+        .product-card:hover .product-image i {
+            color: var(--green);
+            transform: scale(1.1);
+        }
+
+        .product-body {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .product-name {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            line-height: 1.4;
+            margin-bottom: 0.75rem;
+        }
+
+        .product-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .chip-rubro {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            background: var(--green-light);
+            color: var(--green);
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 6px;
+            letter-spacing: 0.02em;
+        }
+
+        .chip-marca {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            background: var(--gray-100);
+            color: var(--gray-600);
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 6px;
+            letter-spacing: 0.02em;
+        }
+
+        .btn-add {
+            margin-top: auto;
+            width: 100%;
+            padding: 0.7rem 1rem;
+            background: var(--green);
+            color: var(--white);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            border-radius: 10px;
+            transition: background var(--transition), transform var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-add:hover {
+            background: var(--green-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-add.added {
+            background: var(--green-dark);
+            pointer-events: none;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: var(--dark-bg);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand .dot {
+            width: 10px;
+            height: 10px;
+            background: var(--orange);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .footer-about p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            max-width: 320px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-col ul li a {
+            font-size: 0.88rem;
+            transition: color var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--orange);
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            font-size: 0.88rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-contact li i {
+            color: var(--green);
+            margin-top: 0.2rem;
+            width: 16px;
+            text-align: center;
+        }
+
+        /* Cert Badges */
+        .footer-certs {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .cert-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .cert-badge i {
+            color: var(--green);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            font-size: 0.8rem;
+        }
+
+        .footer-bottom a {
+            color: var(--orange);
+            transition: color var(--transition);
+        }
+
+        .footer-bottom a:hover {
+            color: var(--white);
+        }
+
+        /* ============================================
+           SCROLL TO TOP
+           ============================================ */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            background: var(--orange);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 20px rgba(236, 84, 3, 0.35);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity var(--transition), transform var(--transition), background var(--transition);
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        .scroll-top:hover {
+            background: var(--orange-hover);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-hamburger {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .page-header {
+                padding: calc(var(--nav-height) + 2rem) 1.5rem 3rem;
+                min-height: 260px;
+            }
+
+            .filters-section {
+                padding: 1.5rem 1rem;
+            }
+
+            .filters-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-group {
+                min-width: 100%;
+            }
+
+            .btn-limpiar {
+                align-self: stretch;
+                text-align: center;
+            }
+
+            .products-section {
+                padding: 2rem 1rem 4rem;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .footer-certs {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .product-body {
+                padding: 0.9rem;
+            }
+
+            .product-name {
+                font-size: 0.88rem;
+            }
+
+            .product-chips {
+                gap: 0.3rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .chip-rubro,
+            .chip-marca {
+                font-size: 0.62rem;
+                padding: 0.15rem 0.45rem;
+            }
+
+            .btn-add {
+                font-size: 0.68rem;
+                padding: 0.6rem 0.5rem;
+                letter-spacing: 0.04em;
+            }
+
+            .product-image i {
+                font-size: 2rem;
+            }
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-animate {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .card-animate.show {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======================== NAVBAR ======================== -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-brand">
+            <span class="dot"></span>
+            Mercomed
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html" class="active">Productos</a></li>
+            <li><a href="contacto.html" class="btn-contacto">Contacto</a></li>
+            <li>
+                <a href="#" class="nav-presupuesto" id="navPresupuesto">
+                    <i class="fas fa-file-invoice"></i> Mi Presupuesto
+                    <span class="badge" id="navBadge">0</span>
+                </a>
+            </li>
+        </ul>
+
+        <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Inicio</a>
+        <a href="productos.html" class="active">Productos</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="#" class="mobile-presupuesto">
+            Mi Presupuesto
+            <span class="badge-mobile" id="navBadgeMobile">0</span>
+        </a>
+    </div>
+
+    <!-- ======================== PAGE HEADER ======================== -->
+    <header class="page-header">
+        <!-- Decorative circles -->
+        <div class="header-circle header-circle-1"></div>
+        <div class="header-circle header-circle-2"></div>
+        <div class="header-circle header-circle-3"></div>
+        <div class="header-circle header-circle-4"></div>
+
+        <div class="page-header-content">
+            <h1>Nuestros <span class="accent">Productos</span></h1>
+            <p>Insumos médicos descartables de primeras marcas, con la calidad y confianza que tu institución necesita.</p>
+        </div>
+    </header>
+
+    <!-- ======================== FILTERS ======================== -->
+    <section class="filters-section">
+        <div class="filters-container">
+            <div class="filters-row">
+                <div class="filter-group">
+                    <label for="filterRubro">Filtrar por Rubro</label>
+                    <select class="filter-select" id="filterRubro">
+                        <option value="">Todos los rubros</option>
+                        <option value="Guantes de examinación">Guantes de examinación</option>
+                        <option value="Catéteres I.V.">Catéteres I.V.</option>
+                        <option value="Jeringas descartables">Jeringas descartables</option>
+                        <option value="Agujas hipodérmicas">Agujas hipodérmicas</option>
+                        <option value="Apósitos y gasas">Apósitos y gasas</option>
+                        <option value="Barbijos y cofias">Barbijos y cofias</option>
+                        <option value="Sondas">Sondas</option>
+                        <option value="Descartables quirúrgicos">Descartables quirúrgicos</option>
+                        <option value="Cintas adhesivas">Cintas adhesivas</option>
+                        <option value="Equipos de venoclisis">Equipos de venoclisis</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filterMarca">Filtrar por Marca</label>
+                    <select class="filter-select" id="filterMarca">
+                        <option value="">Todas las marcas</option>
+                        <option value="PROVEIN">PROVEIN</option>
+                        <option value="KEY">KEY</option>
+                        <option value="MEIYI">MEIYI</option>
+                        <option value="K-KAUTION">K-KAUTION</option>
+                        <option value="PRINTEX">PRINTEX</option>
+                        <option value="AS">AS</option>
+                        <option value="MEDISUL">MEDISUL</option>
+                        <option value="HAND">HAND</option>
+                        <option value="INSUMOS XXI">INSUMOS XXI</option>
+                        <option value="DEXAL">DEXAL</option>
+                        <option value="DALIA">DALIA</option>
+                        <option value="NEOJET">NEOJET</option>
+                        <option value="PIO PIO">PIO PIO</option>
+                        <option value="FLAVIA">FLAVIA</option>
+                        <option value="SAIL">SAIL</option>
+                        <option value="ANADELIA">ANADELIA</option>
+                        <option value="RUSCH">RUSCH</option>
+                        <option value="HIPOALERGIC">HIPOALERGIC</option>
+                    </select>
+                </div>
+                <button class="btn-limpiar" id="btnLimpiar">
+                    <i class="fas fa-times"></i> Limpiar filtros
+                </button>
+            </div>
+
+            <div class="filter-chips" id="filterChips"></div>
+            <div class="filter-count" id="filterCount"></div>
+        </div>
+    </section>
+
+    <!-- ======================== PRODUCTS GRID ======================== -->
+    <section class="products-section">
+        <div class="products-container">
+            <div class="products-grid" id="productsGrid">
+                <!-- Products rendered by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ======================== FOOTER ======================== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-about">
+                    <div class="footer-brand">
+                        <span class="dot"></span>
+                        Mercomed
+                    </div>
+                    <p>Distribuidora de insumos médicos descartables con más de 20 años de trayectoria abasteciendo instituciones de salud en todo el país.</p>
+                    <div class="footer-certs">
+                        <div class="cert-badge">
+                            <i class="fas fa-shield-halved"></i>
+                            ANMAT
+                        </div>
+                        <div class="cert-badge">
+                            <i class="fas fa-certificate"></i>
+                            ISO 9001
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="productos.html">Productos</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Rubros</h4>
+                    <ul>
+                        <li><a href="#" onclick="return false;">Guantes</a></li>
+                        <li><a href="#" onclick="return false;">Catéteres</a></li>
+                        <li><a href="#" onclick="return false;">Jeringas</a></li>
+                        <li><a href="#" onclick="return false;">Apósitos</a></li>
+                        <li><a href="#" onclick="return false;">Barbijos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>(011) 4555-0000</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>ventas@mercomed.com.ar</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-location-dot"></i>
+                            <span>Buenos Aires, Argentina</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; 2026 Mercomed S.A. Todos los derechos reservados.</span>
+                <span>Diseñado con <a href="#">pasión</a> por la salud</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ======================== JAVASCRIPT ======================== -->
+    <script>
+    (function() {
+        'use strict';
+
+        /* ---- Product Data ---- */
+        const productos = [
+            { nombre: "Guantes de látex talle S", rubro: "Guantes de examinación", marca: "KEY" },
+            { nombre: "Guantes de látex talle M", rubro: "Guantes de examinación", marca: "KEY" },
+            { nombre: "Guantes de látex talle L", rubro: "Guantes de examinación", marca: "KEY" },
+            { nombre: "Guantes de nitrilo talle S", rubro: "Guantes de examinación", marca: "MEDISUL" },
+            { nombre: "Guantes de nitrilo talle M", rubro: "Guantes de examinación", marca: "MEDISUL" },
+            { nombre: "Guantes de vinilo talle M", rubro: "Guantes de examinación", marca: "HAND" },
+            { nombre: "Guante de cirugía talle 7", rubro: "Guantes de examinación", marca: "PIO PIO" },
+            { nombre: "Catéter I.V. 18G", rubro: "Catéteres I.V.", marca: "PROVEIN" },
+            { nombre: "Catéter I.V. 20G", rubro: "Catéteres I.V.", marca: "PROVEIN" },
+            { nombre: "Catéter I.V. 22G", rubro: "Catéteres I.V.", marca: "PROVEIN" },
+            { nombre: "Catéter I.V. 24G", rubro: "Catéteres I.V.", marca: "PROVEIN" },
+            { nombre: "Jeringa descartable 1ml", rubro: "Jeringas descartables", marca: "MEIYI" },
+            { nombre: "Jeringa descartable 3ml", rubro: "Jeringas descartables", marca: "DEXAL" },
+            { nombre: "Jeringa descartable 5ml", rubro: "Jeringas descartables", marca: "MEIYI" },
+            { nombre: "Jeringa descartable 10ml", rubro: "Jeringas descartables", marca: "MEIYI" },
+            { nombre: "Jeringa descartable 20ml", rubro: "Jeringas descartables", marca: "MEIYI" },
+            { nombre: "Aguja hipodérmica 21G", rubro: "Agujas hipodérmicas", marca: "MEIYI" },
+            { nombre: "Aguja hipodérmica 23G", rubro: "Agujas hipodérmicas", marca: "MEIYI" },
+            { nombre: "Apósito adhesivo 10x10", rubro: "Apósitos y gasas", marca: "HIPOALERGIC" },
+            { nombre: "Apósito transparente", rubro: "Apósitos y gasas", marca: "INSUMOS XXI" },
+            { nombre: "Gasa estéril 10x10", rubro: "Apósitos y gasas", marca: "DALIA" },
+            { nombre: "Gasa estéril 20x20", rubro: "Apósitos y gasas", marca: "DALIA" },
+            { nombre: "Barbijo tricapa", rubro: "Barbijos y cofias", marca: "PRINTEX" },
+            { nombre: "Barbijo N95", rubro: "Barbijos y cofias", marca: "K-KAUTION" },
+            { nombre: "Cofia descartable", rubro: "Barbijos y cofias", marca: "PRINTEX" },
+            { nombre: "Sonda nasogástrica K33", rubro: "Sondas", marca: "RUSCH" },
+            { nombre: "Sonda Foley 2 vías", rubro: "Sondas", marca: "RUSCH" },
+            { nombre: "Sonda rectal", rubro: "Sondas", marca: "ANADELIA" },
+            { nombre: "Camisolín descartable", rubro: "Descartables quirúrgicos", marca: "NEOJET" },
+            { nombre: "Campo quirúrgico estéril", rubro: "Descartables quirúrgicos", marca: "NEOJET" },
+            { nombre: "Sábana descartable", rubro: "Descartables quirúrgicos", marca: "FLAVIA" },
+            { nombre: "Cinta adhesiva microporosa", rubro: "Cintas adhesivas", marca: "HIPOALERGIC" },
+            { nombre: "Cinta adhesiva de tela", rubro: "Cintas adhesivas", marca: "AS" },
+            { nombre: "Equipo de venoclisis macro", rubro: "Equipos de venoclisis", marca: "SAIL" },
+            { nombre: "Equipo de venoclisis micro", rubro: "Equipos de venoclisis", marca: "SAIL" },
+            { nombre: "Llave de 3 vías", rubro: "Equipos de venoclisis", marca: "PROVEIN" }
+        ];
+
+        /* ---- DOM Elements ---- */
+        const navbar = document.getElementById('navbar');
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navBadge = document.getElementById('navBadge');
+        const navBadgeMobile = document.getElementById('navBadgeMobile');
+        const filterRubro = document.getElementById('filterRubro');
+        const filterMarca = document.getElementById('filterMarca');
+        const btnLimpiar = document.getElementById('btnLimpiar');
+        const filterChips = document.getElementById('filterChips');
+        const filterCount = document.getElementById('filterCount');
+        const productsGrid = document.getElementById('productsGrid');
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        /* ---- State ---- */
+        let currentRubro = '';
+        let currentMarca = '';
+
+        /* ---- Navbar Scroll ---- */
+        function handleScroll() {
+            if (window.scrollY > 40) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Scroll to top button
+            if (window.scrollY > 400) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        }
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll();
+
+        /* ---- Scroll to Top ---- */
+        scrollTopBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        /* ---- Mobile Menu ---- */
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        /* ---- Badge / Presupuesto ---- */
+        function getPresupuestoCount() {
+            return parseInt(localStorage.getItem('mercomed_presupuesto_count') || '0', 10);
+        }
+
+        function setPresupuestoCount(count) {
+            localStorage.setItem('mercomed_presupuesto_count', count.toString());
+        }
+
+        function updateBadge() {
+            var count = getPresupuestoCount();
+            navBadge.textContent = count;
+            navBadgeMobile.textContent = count;
+            if (count > 0) {
+                navBadge.classList.add('visible');
+                navBadgeMobile.classList.add('visible');
+            } else {
+                navBadge.classList.remove('visible');
+                navBadgeMobile.classList.remove('visible');
+            }
+        }
+
+        updateBadge();
+
+        /* ---- Render Products ---- */
+        function renderProducts() {
+            var filtered = productos.filter(function(p) {
+                var matchRubro = !currentRubro || p.rubro === currentRubro;
+                var matchMarca = !currentMarca || p.marca === currentMarca;
+                return matchRubro && matchMarca;
+            });
+
+            // Update count
+            filterCount.innerHTML = 'Mostrando <span>' + filtered.length + '</span> de <span>' + productos.length + '</span> productos';
+
+            // Update clear button
+            if (currentRubro || currentMarca) {
+                btnLimpiar.classList.add('visible');
+            } else {
+                btnLimpiar.classList.remove('visible');
+            }
+
+            // Update chips
+            renderChips();
+
+            // Render grid
+            if (filtered.length === 0) {
+                productsGrid.innerHTML = '<div class="no-results"><i class="fas fa-search"></i><h3>No se encontraron productos</h3><p>Intentá con otros filtros o limpiá la selección actual.</p></div>';
+                return;
+            }
+
+            var html = '';
+            filtered.forEach(function(product, index) {
+                html += '<div class="product-card card-animate" style="transition-delay: ' + (index * 40) + 'ms;">' +
+                    '<div class="product-image">' +
+                        '<i class="fas fa-kit-medical"></i>' +
+                    '</div>' +
+                    '<div class="product-body">' +
+                        '<h3 class="product-name">' + product.nombre + '</h3>' +
+                        '<div class="product-chips">' +
+                            '<span class="chip-rubro">' + product.rubro + '</span>' +
+                            '<span class="chip-marca">' + product.marca + '</span>' +
+                        '</div>' +
+                        '<button class="btn-add" data-nombre="' + product.nombre.replace(/"/g, '&quot;') + '">' +
+                            '<i class="fas fa-plus"></i> Añadir al presupuesto' +
+                        '</button>' +
+                    '</div>' +
+                '</div>';
+            });
+
+            productsGrid.innerHTML = html;
+
+            // Animate cards in
+            requestAnimationFrame(function() {
+                var cards = productsGrid.querySelectorAll('.card-animate');
+                cards.forEach(function(card, i) {
+                    setTimeout(function() {
+                        card.classList.add('show');
+                    }, i * 40);
+                });
+            });
+
+            // Bind add buttons
+            productsGrid.querySelectorAll('.btn-add').forEach(function(btn) {
+                btn.addEventListener('click', handleAddToPresupuesto);
+            });
+        }
+
+        /* ---- Add to Presupuesto ---- */
+        function handleAddToPresupuesto(e) {
+            var btn = e.currentTarget;
+            if (btn.classList.contains('added')) return;
+
+            // Increment count
+            var count = getPresupuestoCount() + 1;
+            setPresupuestoCount(count);
+            updateBadge();
+
+            // Animate badge
+            navBadge.style.transform = 'scale(1.3)';
+            setTimeout(function() {
+                navBadge.style.transform = 'scale(1)';
+            }, 200);
+
+            // Button visual feedback
+            btn.classList.add('added');
+            btn.innerHTML = '<i class="fas fa-check"></i> Añadido';
+
+            setTimeout(function() {
+                btn.classList.remove('added');
+                btn.innerHTML = '<i class="fas fa-plus"></i> Añadir al presupuesto';
+            }, 800);
+        }
+
+        /* ---- Render Filter Chips ---- */
+        function renderChips() {
+            var html = '';
+            if (currentRubro) {
+                html += '<span class="filter-chip">' +
+                    '<span>Rubro: ' + currentRubro + '</span>' +
+                    '<button class="chip-remove" data-type="rubro" aria-label="Quitar filtro">&times;</button>' +
+                '</span>';
+            }
+            if (currentMarca) {
+                html += '<span class="filter-chip">' +
+                    '<span>Marca: ' + currentMarca + '</span>' +
+                    '<button class="chip-remove" data-type="marca" aria-label="Quitar filtro">&times;</button>' +
+                '</span>';
+            }
+            filterChips.innerHTML = html;
+
+            // Bind chip remove
+            filterChips.querySelectorAll('.chip-remove').forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var type = this.getAttribute('data-type');
+                    if (type === 'rubro') {
+                        currentRubro = '';
+                        filterRubro.value = '';
+                    } else if (type === 'marca') {
+                        currentMarca = '';
+                        filterMarca.value = '';
+                    }
+                    renderProducts();
+                });
+            });
+        }
+
+        /* ---- Filter Events ---- */
+        filterRubro.addEventListener('change', function() {
+            currentRubro = this.value;
+            renderProducts();
+        });
+
+        filterMarca.addEventListener('change', function() {
+            currentMarca = this.value;
+            renderProducts();
+        });
+
+        btnLimpiar.addEventListener('click', function() {
+            currentRubro = '';
+            currentMarca = '';
+            filterRubro.value = '';
+            filterMarca.value = '';
+            renderProducts();
+        });
+
+        /* ---- Initial Render ---- */
+        renderProducts();
+
+    })();
+    </script>
+
+</body>
+</html>
